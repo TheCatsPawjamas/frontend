@@ -1,5 +1,7 @@
 import { useState } from "react"
 
+// local host user: http://localhost:1337/api 
+
 const Login = () => {
     const [ username, setUsername ] = useState("");
     const [ password, setPassword ] = useState("");
@@ -7,11 +9,11 @@ const Login = () => {
     async function loginFunction() {
 
         try {
-            const response = await fetch(..... {
+            const response = await fetch(`http://localhost:1337/api/users/login`, {
               method: "POST", 
               headers: {
                 "Content-Type": "application/json",
-            }
+            },
               body: JSON.stringify ({
                 username: username,
                 password: password,
@@ -52,7 +54,6 @@ const Login = () => {
         </form>
     </section>
     )
-
-
-
 }
+
+export default Login
