@@ -33,4 +33,4 @@ const Cats = (props) => {
   );
 };
 
-export default Cats; 
+export default Cats;
