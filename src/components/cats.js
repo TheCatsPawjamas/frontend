@@ -24,7 +24,15 @@ const Cats = (props) => {
       {cats.length > 0 && cats.map(cat => (
         <div key={cat.id}>
           <div id="catProfile">
-            <h2>Cat: {cat.name}</h2>
+            <h2>{cat.name}</h2>
+            <img id="catImage" src={cat.imageURL}></img>
+            <p>Breed: {cat.breed}</p>
+            <p>Adoption Fee: {cat.adoptionFee}</p>
+
+            {/* Link to go to single cat */}
+            {/* <Link to={"/cats/" + cat.id} > View details </Link>
+            <SingleCat catProps={cat}/> */}
+            
           </div>
         </div>
       ))}
