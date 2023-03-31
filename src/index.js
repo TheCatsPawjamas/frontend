@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Navbar, Home } from "./components";
+import { Navbar, Home, Login } from "./components";
 
 
 
