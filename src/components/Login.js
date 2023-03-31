@@ -25,7 +25,7 @@ const Login = () => {
             if (!result.token) {
                 alert("username or password is incorrect, please try again")
             } else {
-                const myJWT = reult.token;
+                const myJWT = result.token;
                 localStorage.setItem("token", myJWT)
                 setCurrentUser(result.user)
             }
