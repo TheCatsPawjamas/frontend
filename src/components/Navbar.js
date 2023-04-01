@@ -17,18 +17,18 @@ const Navbar = (props) => {
     }
 
     return(
-        <header>
+        <header id="mainHeaderNavbar">
             {/* <img id="headerLogo" src="/logo.jpg" alt="Fitness Tracker logos"/> */}
-                    <div id="headerButtonGroup">  
+                    <div id="headerNavbar">  
 
-                        <Link to='/' className="headerButton"> Home </Link>
-                        {/* <Link to='/routines' className="headerButton"> The Cats </Link>  */}
+                        <Link to='/' id="homeNavbar"> Home </Link>
+                        <Link to='/cats' id="allCatsNavbar"> The Cats </Link> 
                         {/* {isLoggedIn ?<Link to='/myroutines' className="headerButton"> My Orders </Link>: undefined } */}
                         {/* {!isLoggedIn ? undefined: <Link to='/cart'><img src={cart}></img></Link>} */}
                         
                         {/* {isLoggedIn ? <Link to='/myroutines' className="headerButton"> My Routines </Link> : <a href="#" onClick={() => alert("error")} className="headerButton"> My Routines </a>} */}
                         {/* <Link to='/activities' className="headerButton"> Activities </Link> */}
-                        {!isLoggedIn ? <Link to='/login' className="headerButton"> Login </Link> : <Link onClick={handleLogout} className="headerButton"> Logout </Link>}
+                        {!isLoggedIn ? <Link to='/login' id="loginNavbar"> Login </Link> : <Link onClick={handleLogout} className="headerButton"> Logout </Link>}
                         <Link to='/cart'><img src={cart}></img></Link>
                     </div>  
         </header>
