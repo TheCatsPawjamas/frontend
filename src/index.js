@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Navbar, Home, Login } from "./components";
+import { Navbar, Homepage, Login } from "./components";
 
 
 
@@ -13,8 +13,8 @@ const App = () => {
         <div> 
             <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
             <Routes>
-                {/* <Route path='/' element={<Homepage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} /> */}
-
+                <Route path='/' element={<Homepage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
+                <Route path='/login' element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
             </Routes> 
         </div>
     </BrowserRouter> 
