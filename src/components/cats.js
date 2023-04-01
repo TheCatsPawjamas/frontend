@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+
+//BASE_URL
 const BASE_URL = `http://localhost:1337/api`;
 
 const Cats = (props) => {
@@ -26,7 +28,7 @@ const Cats = (props) => {
   return (
     <div>
       <h1 id="catHeader">Adoptable Cats</h1>
-      <input type="text" value={search} onChange={handleSearchChange} />
+      <input type="text" value={search} onChange={handleSearchChange} /> 
       {cats.length > 0 && cats.map(cat => (
         <div key={cat.id}>
           <div id="catProfile">
