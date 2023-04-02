@@ -1,13 +1,16 @@
 import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom";
 
 // local host user: http://localhost:1337/api 
 
-const Login = () => {
+const Login = (props) => {
+    const navigate = useNavigate();
+    const {isLoggedIn, setIsLoggedIn} = props;
     const [ username, setUsername ] = useState("");
     const [ password, setPassword ] = useState("");
 
-    async function loginFunction() {
-
+    async function loginFunction(event) {
+        event.preventDefault();
         try {
             const response = await fetch(`http://localhost:1337/api/users/login`, {
               method: "POST", 
@@ -16,9 +19,9 @@ const Login = () => {
             },
               body: JSON.stringify ({
                 username: username,
-                password: password,
+                password: password
               })
-            })
+            });
             console.log("login is working")
             const result = await response.json();
             console.log(result)
@@ -27,7 +30,9 @@ const Login = () => {
             } else {
                 const myJWT = result.token;
                 localStorage.setItem("token", myJWT)
-                setCurrentUser(result.user)
+                // setCurrentUser(result.user)
+                setIsLoggedIn(!isLoggedIn);
+                navigate('/');
             }
         } catch (error) {
             console.log(error)
@@ -52,6 +57,7 @@ const Login = () => {
             />
             <button className="loginButton" type="submit"> Login </button>
         </form>
+        <Link to="/register">Don't have an Account? Sign Up here for free!</Link>
     </section>
     )
 }
