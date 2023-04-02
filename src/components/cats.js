@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "./cats.css"
 
 const BASE_URL = `http://localhost:1337/api`;
 
@@ -34,6 +35,7 @@ const Cats = (props) => {
             <img id="catImage" src={cat.imageURL}></img>
             <p>Breed: {cat.breed}</p>
             <p>Adoption Fee: {cat.adoptionFee}</p>
+            <Link to={`/cats/${cat.id}`}>View {cat.name}'s details</Link>
           </div>
         </div>
       ))}
