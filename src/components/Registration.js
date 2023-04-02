@@ -1,13 +1,16 @@
 import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 
 const Registration = (props) => {
+    const navigate = useNavigate();
+    const {isLoggedIn, setIsLoggedIn} = props;
     const [ username, setUsername ] = useState("")
     const [ password, setPassword ] = useState("")
     const [ email, setEmail ] = useState ("")
 
 
-    async function accountRegistration () {
-
+    async function accountRegistration (event) {
+        event.preventDefault();
         try {
             if (username.length < 8 ) {
                 alert ("Username does not meet requirements, please try again");
@@ -16,17 +19,18 @@ const Registration = (props) => {
                 alert ("Password does not meet requirements, please try again")
                 return;
             }
+            console.log("About to fetch request");
             const response = await fetch (`http://localhost:1337/api/users/register`, {
                 method: "POST", 
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify ({
-                    user: {
+                    
                         username: username, 
                         password: password,
                         email: email 
-                    }
+                    
                 })
             });
         
@@ -40,7 +44,9 @@ const Registration = (props) => {
                 const myJWT = resultData.token;
                 localStorage.setItem("token", myJWT)
                 // will have to create a component for currentUser and send down through props - will most likely be in the root index.js
-                setCurrentUser(resultData.user)
+                // setCurrentUser(resultData.user)
+                setIsLoggedIn(!isLoggedIn);
+                navigate('/');
             }
         } catch (error) {
             console.log(error)
@@ -72,6 +78,7 @@ const Registration = (props) => {
                 />
                 <button id="submitButton" type="submit"> Create Account </button>
             </form>
+
         </section>
     )
 }
