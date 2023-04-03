@@ -34,8 +34,10 @@ const Cats = (props) => {
           <div id="catProfile">
             <h2>{cat.name}</h2>
             <img id="catImage" src={cat.imageURL}></img>
-            <p>Breed: {cat.breed}</p>
-            <p>Adoption Fee: {cat.adoptionFee}</p>
+            {/* <p>Breed: {cat.breed}</p> */}
+            <p>{cat.name}'s Breed: {cat.breed}</p>
+            <p>Adoption Fee: ${cat.adoptionFee}</p>
+            {/* <p>Adoption Fee: {cat.adoptionFee}</p> */}
             <Link id="link" to={`/cats/${cat.id}`}>View {cat.name}'s details</Link>
           </div>
         </div>
