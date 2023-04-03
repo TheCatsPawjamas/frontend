@@ -1,42 +1,43 @@
-/* *{
-    
-} */
 #mainHeaderNavbar{
     display: flex;
     border: 1px solid black;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1rem;
 }
 #headerNavbar{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    margin-left: 50%;
-    margin-right: auto;
-    width: 50%;
     border: 1px solid blue;
-    
+    width: 50%;    
+    background-color: #f5ebeb;
 }
-#homeNavbar{
+#homeNavbar,
+#allCatsNavbar,
+#loginNavbar
+{
     color:blue;
-}
-#allCatsNavbar{
-    color:blue;
-}
-#loginNavbar{
-    color: blue;
+    text-decoration: none;
+    margin-left: 1rem;
+
 }
 #cartImgNavbar{
-    /* border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 5px;
-    width: 150px; */
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    /* width: 50%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1rem;
     
 }
 #cartImg{
 
     max-width: 20%;
     max-height: 20%;
+}
+
+* {
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
