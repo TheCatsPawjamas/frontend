@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
-
+import "./Login.css"
 // local host user: http://localhost:1337/api 
 
 const Login = (props) => {
@@ -57,7 +57,7 @@ const Login = (props) => {
             />
             <button className="loginButton" type="submit"> Login </button>
         </form>
-        <Link to="/register">Don't have an Account? Sign Up here for free!</Link>
+        <Link id="registrationLink" to="/register">Don't have an Account? Sign Up here for free!</Link>
     </section>
     )
 }
