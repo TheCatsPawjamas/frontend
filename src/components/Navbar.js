@@ -2,6 +2,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import cart from "../images/Screenshot 2023-03-31 at 6.08.31 PM Small.jpeg";
+import './Navbar.css';
 
 
 const Navbar = (props) => {
@@ -29,7 +30,7 @@ const Navbar = (props) => {
                         {/* {isLoggedIn ? <Link to='/myroutines' className="headerButton"> My Routines </Link> : <a href="#" onClick={() => alert("error")} className="headerButton"> My Routines </a>} */}
                         {/* <Link to='/activities' className="headerButton"> Activities </Link> */}
                         {!isLoggedIn ? <Link to='/login' id="loginNavbar"> Login </Link> : <Link onClick={handleLogout} className="headerButton"> Logout </Link>}
-                        <Link to='/cart'><img src={cart}></img></Link>
+                        <Link to='/cart' id='cartImgNavbar'><img src={cart} id="cartImg"></img></Link>
                     </div>  
         </header>
     )
