@@ -1,16 +1,22 @@
+/*#867070 #d5b4b4 #e4d0d0 #f5ebeb*/
 #home{
-    /* display: flex; */
-    border: 1px solid red;
-}
-#homeContent{
     display: flex;
-   
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+    border: 1px solid red;
+    height: 98vh;
+    width: 100%;
+}
+.homeContent{
+    display: flex;
+    width: 50%;
     flex-flow: column wrap;
     border: 1px black;
     justify-content: center;
-    margin-left: 50%;
-    margin-right: auto;
-    margin-top:10%;
+    background-color: #f5ebeb;
+    padding:4%;
+  
 }
 #loginHyperlink{
     color: blue;
@@ -27,5 +33,12 @@
     max-height: 40%;
     align-self: center;
     border-bottom: 70%;
+    background-color: #f5ebeb;
 
+}
+.catHomepage {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    border-color:2px solid black ;
 }
