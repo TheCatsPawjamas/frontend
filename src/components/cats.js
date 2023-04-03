@@ -36,7 +36,7 @@ const Cats = (props) => {
             <img id="catImage" src={cat.imageURL}></img>
             <p>Breed: {cat.breed}</p>
             <p>Adoption Fee: {cat.adoptionFee}</p>
-            <Link to={`/cats/${cat.id}`}>View {cat.name}'s details</Link>
+            <Link id="link" to={`/cats/${cat.id}`}>View {cat.name}'s details</Link>
           </div>
         </div>
       ))}
