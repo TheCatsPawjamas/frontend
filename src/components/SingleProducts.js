@@ -3,8 +3,10 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
 const SingleProducts = (props) => {
+    const {isLoggedIn, setIsLoggedIn} = props;
     const {id} = useParams();
     const [products, setProducts] = useState([])
+
 
     async function fetchData() {
         try {
@@ -14,25 +16,33 @@ const SingleProducts = (props) => {
             }
         });
         const result = await response.json();
+        console.log(result);
         setProducts(result);
         } catch (error) {
             throw error;
         }
     }
     useEffect(() => {
-        
-    })
+        fetchData();
+    }, []);
     
-
-
-    //Don't know what singleProductsLink will link to yet
     return (
         <div className="singleProducts">
             
-            <Link className="singleProductsLink" to="/"></Link>
+            <div>
             {
-
+                <div>
+                    <p>Name: {products.name}</p>
+                    <p>Breed: {products.breed}</p>
+                    <img src={products.imageURL}/>
+                    <p>Age: {products.age}</p>
+                    <p>Temperament: {products.temperament}</p>
+                    <p>{products.outdoor? <p>Outdoor Cat</p>: <p>Indoor Cat</p>}</p>
+                    <p>Adoption Fee: ${products.adoptionFee}</p>
+                    
+                </div>    
             }
+            </div>
         </div>
     )
 }
