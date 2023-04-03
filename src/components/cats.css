@@ -40,6 +40,7 @@
   #catProfile p {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
+    font-weight:bolder;
   }
   
   #link {
