@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Navbar, Homepage, Login, SingleProduct, Cats, Registration } from "./components";
+import { Navbar, Homepage, Login, SingleProduct, Cats, Registration, Cart } from "./components";
 
 
 
@@ -18,6 +18,7 @@ const App = () => {
                 <Route path='/register' element={<Registration isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
                 <Route path='/cats' element={<Cats isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
                 <Route path='/cats/:id' element={<SingleProduct isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
+                <Route path='/cart' element={<Cart isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
             </Routes> 
         </div>
     </BrowserRouter> 

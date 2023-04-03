@@ -1,7 +1,7 @@
 
 #catHeader {
+    display:flex;
     font-size: 2.5rem;
-    margin-bottom: 1.5rem;
   }
   
   input[type="text"] {
@@ -40,6 +40,7 @@
   #catProfile p {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
+    font-weight:bolder;
   }
   
   #link {
@@ -50,6 +51,7 @@
     border: 1px solid #333;
     width: 13%;
     margin-bottom: 2rem;
+    margin-top: 1rem;
     border-radius: 5px;
   }
   
