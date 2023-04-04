@@ -2,14 +2,17 @@ import { useState, useEffect } from 'react';
 
 const MyProfile = (props) => {
 
-    const { username, setUsername } = useState("");
-    const { userPassword, setUserPassword } = useState("");
-    const { userEmail, setUserEmail } = useState("");
+    const [ username, setUsername ] = useState("");
+    const [ userPassword, setUserPassword ] = useState("");
+    const [ userEmail, setUserEmail ] = useState("");
+    const [ username, setUsername ] = useState("");
+    const [ userPassword, setUserPassword ] = useState("");
+    const [ userEmail, setUserEmail ] = useState("");
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
             props.setIsLoggedIn(true);
-            fetchMyUserData();
+            fetchUserData();
         } else {
             props.setIsLoggedIn(false);
         }
@@ -25,32 +28,27 @@ const MyProfile = (props) => {
                 },
             });
             const result = await response.json();
-            setUserId(result.id);
-            fetchUsername(result.username);
-        } catch (error) {
-            throw error
-        }
-    }
-
-    async function fetchUsername(username) {
-        try {
-            const response = await fetch('', {
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            });
-            const result = await response.json();
-            setUsername(result);
+            setUsername(result.username);
+            setUserPassword(result.password);
+            setUserEmail(result.email);
+            setUsername(result.username);
+            setUserPassword(result.password);
+            setUserEmail(result.email);
         } catch (error) {
             throw error;
         }
     }
 
-    
-
-
-
     return (
-
+        <div>
+            <label>Username:</label>
+            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+            <label>Password:</label>
+            <input type="password" value={userPassword} onChange={(e) => setUserPassword(e.target.value)} />
+            <label>Email:</label>
+            <input type="email" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} />
+        </div>
     )
 }
+
+export default Profilepage
