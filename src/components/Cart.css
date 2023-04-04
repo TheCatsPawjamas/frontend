@@ -3,7 +3,7 @@
     max-height: 100%;
     margin: 0 auto;
     padding: 10px;
-    background-color:  rgb(153, 115, 115);
+    background-color:  rgb(145, 129, 138);
     border: 1px solid #ccc;
   }
 
@@ -18,7 +18,7 @@
     display: flex;
     margin-bottom: 20px;
     padding-bottom: 20px;
-    border-bottom: 1px solid  rgb(153, 115, 115);
+    border-bottom: 1px solid  rgb(145, 129, 138);
     padding: 15px;
   }
 
@@ -28,7 +28,7 @@
     margin-right: 20px;
     object-fit: cover;
     margin-bottom: 1rem;
-    border: rgb(153, 115, 115) 2px solid;
+    border: rgb(145, 129, 138) 2px solid;
     border-radius: 20px;
   }
   
@@ -67,7 +67,7 @@
   }
 
   .cartItemQuantity button:hover {
-    background-color: rgb(153, 115, 115);
+    background-color: rgb(145, 129, 138);
     color: #fff;
   }
 
@@ -88,14 +88,14 @@
   #pjButton {
     font-size: 16px;
     background-color: #fff;
-    border: rgb(153, 115, 115) 2px solid;
+    border: rgb(145, 129, 138) 2px solid;
     border-radius: 8px;
     padding: 10px;
     margin-top: 20px;
   }
 
   #pjButton:hover {
-    background-color: rgb(153, 115, 115);
+    background-color: rgb(145, 129, 138);
     color: #fff;
   }
 
@@ -105,7 +105,7 @@
     margin-right: 20px;
     object-fit: cover;
     margin-bottom: 1rem;
-    border: rgb(153, 115, 115) 2px solid;
+    border: rgb(145, 129, 138) 2px solid;
     border-radius: 20px;
   }
 
@@ -120,7 +120,7 @@
     text-decoration: none;
     color: #333;
     padding: 0.5rem;
-    border: rgb(153, 115, 115) 2px solid;
+    border: rgb(145, 129, 138) 2px solid;
     width: 13%;
     margin-bottom: 2rem;
     margin-top: 1rem;
@@ -133,7 +133,7 @@
   }
 
   #continueShoppingLink:hover {
-    background-color: rgb(153, 115, 115);
+    background-color: rgb(145, 129, 138);
     color: #fff;
     border-bottom: 1px solid #ccc;
   }

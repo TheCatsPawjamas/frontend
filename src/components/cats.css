@@ -8,7 +8,7 @@
     font-size: 1.25rem;
     padding: 0.5rem;
     border: none;
-    border-bottom: 2px solid rgb(153, 115, 115);
+    border-bottom: 2px solid rgb(145, 129, 138);
     width: 100%;
     margin-bottom: 1.5rem;
   }
@@ -20,7 +20,7 @@
     margin-bottom: 2rem;
     margin-left: 2rem;
     margin-right: 2rem;
-    border-bottom:  rgb(153, 115, 115) 2px solid;
+    border-bottom:  rgb(145, 129, 138) 2px solid;
   }
   
   #catProfile img {
@@ -28,7 +28,7 @@
     height: 250px;
     object-fit: cover;
     margin-bottom: 1rem;
-    border: rgb(153, 115, 115) 2px solid;
+    border: rgb(145, 129, 138) 2px solid;
     border-radius: 25px;
   }
   
@@ -56,7 +56,7 @@
   }
   
   #SingleProductsLink:hover {
-    background-color: rgb(153, 115, 115);
+    background-color: rgb(145, 129, 138);
     color: #fff;
   }
 
@@ -73,7 +73,7 @@
   }
 
   #cartLink:hover{
-    background-color: rgb(153, 115, 115);
+    background-color: rgb(145, 129, 138);
     color: #fff;
   }
   
