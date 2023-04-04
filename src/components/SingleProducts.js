@@ -1,4 +1,5 @@
 import { react } from "react";
+import "./SingleProducts.css";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
@@ -31,14 +32,15 @@ const SingleProducts = (props) => {
             
             <div>
             {
-                <div>
-                    <p>Name: {products.name}</p>
-                    <p>Breed: {products.breed}</p>
-                    <img src={products.imageURL}/>
-                    <p>Age: {products.age}</p>
-                    <p>Temperament: {products.temperament}</p>
-                    <p>{products.outdoor? <p>Outdoor Cat</p>: <p>Indoor Cat</p>}</p>
-                    <p>Adoption Fee: ${products.adoptionFee}</p>
+                <div id="individualCatPage">
+                    {/* <p id="name">Name: {products.name}</p> */}
+                    <p id="name">{products.name}</p>
+                    <p className="catInfo">Breed: {products.breed}</p>
+                    <img id="image"src={products.imageURL}/>
+                    <p className="catInfo">Age: {products.age}</p>
+                    <p className="catInfo">Temperament: {products.temperament}</p>
+                    <p className="catInfo">{products.outdoor? <p>Outdoor Cat</p>: <p>Indoor Cat</p>}</p>
+                    <p className="catInfo">Adoption Fee: ${products.adoptionFee}</p>
                     
                 </div>    
             }
