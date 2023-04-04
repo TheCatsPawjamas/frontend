@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import "./Registration.css"
 
 const Registration = (props) => {
     const navigate = useNavigate();
@@ -70,7 +71,7 @@ const Registration = (props) => {
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
                 />
-                <input className = "emailBox"
+                <input className = "registrationBox"
                     type="text"
                     placeholder="email"
                     value={email}
