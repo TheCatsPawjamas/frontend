@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
+import paws from "../images/catPawsImg.jpg"
+
 import "./Login.css"
 // local host user: http://localhost:1337/api 
 
@@ -40,7 +42,8 @@ const Login = (props) => {
     }
 
     return (
-        <section id="loginSection">
+        <section id="loginSection" className="mainSection">
+        {/* <img id="loginImage" src={paws} alt="background image"></img> */}
         <h3 id="loginHeader"> Login to your account</h3>
         <form onSubmit={loginFunction}>
             <input className="loginBox"
