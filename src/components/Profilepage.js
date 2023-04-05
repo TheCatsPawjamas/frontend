@@ -1,10 +1,7 @@
 import { useState, useEffect } from 'react';
 
-const MyProfile = (props) => {
+const Profilepage = (props) => {
 
-    const [ username, setUsername ] = useState("");
-    const [ userPassword, setUserPassword ] = useState("");
-    const [ userEmail, setUserEmail ] = useState("");
     const [ username, setUsername ] = useState("");
     const [ userPassword, setUserPassword ] = useState("");
     const [ userEmail, setUserEmail ] = useState("");
@@ -28,9 +25,6 @@ const MyProfile = (props) => {
                 },
             });
             const result = await response.json();
-            setUsername(result.username);
-            setUserPassword(result.password);
-            setUserEmail(result.email);
             setUsername(result.username);
             setUserPassword(result.password);
             setUserEmail(result.email);
