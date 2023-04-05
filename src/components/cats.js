@@ -40,7 +40,7 @@ const Cats = (props) => {
   return (
     <div>
       <h1 id="catHeader">Adoptable Cats</h1>
-      <input type="text" value={search} onChange={handleSearchChange} />
+      <input className="searchbar" type="text" value={search} onChange={handleSearchChange} />
       {cats.length > 0 && cats.map(cat => (
         <div key={cat.id}>
           <div id="catProfile">

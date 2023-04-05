@@ -44,8 +44,6 @@ const Registration = (props) => {
             } else {
                 const myJWT = resultData.token;
                 localStorage.setItem("token", myJWT)
-                // will have to create a component for currentUser and send down through props - will most likely be in the root index.js
-                // setCurrentUser(resultData.user)
                 setIsLoggedIn(!isLoggedIn);
                 navigate('/');
             }
@@ -73,7 +71,7 @@ const Registration = (props) => {
                 />
                 <input className = "registrationBox"
                     type="text"
-                    placeholder="email"
+                    placeholder="Email"
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                 />

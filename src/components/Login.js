@@ -43,7 +43,6 @@ const Login = (props) => {
 
     return (
         <section id="loginSection">
-        {/* <img id="loginImage" src={paws} alt="background image"></img> */}
         <h3 id="loginHeader"> Login to your account</h3>
         <form id="form" onSubmit={loginFunction}>
             <input className="loginBox"

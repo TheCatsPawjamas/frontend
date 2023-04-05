@@ -6,7 +6,7 @@
     font-size: 2.5rem;
   }
   
-  input[type="text"] {
+  .searchbar {
     font-size: 1.25rem;
     padding: 0.5rem;
     border: none;
