@@ -4,14 +4,14 @@
     font-size: 2.5rem;
   }
   
-  input[type="text"] {
+  /* input[type="text"] {
     font-size: 1.25rem;
     padding: 0.5rem;
     border: none;
     border-bottom: 2px solid rgb(145, 129, 138);
     width: 100%;
     margin-bottom: 1.5rem;
-  }
+  } */
   
   #catProfile {
     display: flex;

@@ -71,7 +71,7 @@ const Registration = (props) => {
                 />
                 <input className = "registrationBox"
                     type="text"
-                    placeholder="email"
+                    placeholder="Email"
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                 />
