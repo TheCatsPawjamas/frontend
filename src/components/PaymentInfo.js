@@ -1,44 +1,76 @@
-// import { useState } from "react"
+import { useState, useEffect} from "react"
 
-// const PaymentInfo = () => {
-//     const [ creditCardName, setCreditCardName ] = useState("")
-//     const [ crediCard, setCreditCard ] = useState("")
-//     const [ creditCardExpirationDate, setCreditCardExpirationDate ] = useState("")
-//     const [ creditCardCVC, setCreditCardCVC ] = useState("")
+const PaymentInfo = (props) => {
+    const { setIsLoggedIn } = props
+    const [ creditCardName, setCreditCardName ] = useState("")
+    const [ creditCard, setCreditCard ] = useState("")
+    const [ creditCardExpirationDate, setCreditCardExpirationDate ] = useState("")
+    const [ creditCardCVC, setCreditCardCVC ] = useState("")
 
-//     async function Payment () {
+    async function Payment (event) {
+        event.preventDefault();
+        try {
+            const response = await fetch(`http://localhost:1337/api/orders/id`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify ({
+                    creditCardName: creditCardName,
+                    creditCard: creditCard, 
+                    creditCardExpirationDate: creditCardExpirationDate,
+                    creditCardCVC: creditCardCVC,
+                })
+            });
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
-//     }
-//     return (
-//         <section> 
-//             <h3> To continue, please provide your payment information below</h3>
+    useEffect ( () => {
+        if (localStorage.getItem("token")) {
+            setIsLoggedIn(true);
+            Payment()
+        } else {
+            setIsLoggedIn(false)
+            console.log("No token exist")
+        }
+    }, []);
+    
+    return (
+        <section> 
+            <h3> To continue, please provide your payment information below</h3>
 
-//             <form> 
-//                 <input
-//                     type="text"
-//                     placeholder="Name On Card"
-//                     value={}
-//                     onChange={(event) => (event.target.value)}
-//                 />
-//                 <input
-//                     type="text"
-//                     placeholder="Credit Card Number"
-//                     value={}
-//                     onChange={(event) => (event.target.value)}
-//                 />
-//                 <input
-//                     type="text"
-//                     placeholder="Expiration Date"
-//                     value={}
-//                     onChange={(event) => (event.target.value)}
-//                 />
-//                 <input
-//                     type="text"
-//                     placeholder="CVC#"
-//                     value={}
-//                     onChange={(event) => (event.target.value)}
-//                 />
-//             </form>
-//         </section>
-//     )
-// }
+            <form onSubmit={Payment}> 
+                <input
+                    type="text"
+                    placeholder="Name On Card"
+                    value={creditCardName}
+                    onChange={(event) => setCreditCardName(event.target.value)}
+                />
+                <input
+                    type="text"
+                    placeholder="Credit Card Number"
+                    value={creditCard}
+                    onChange={(event) => setCreditCard(event.target.value)}
+                />
+                <input
+                    type="text"
+                    placeholder="Expiration Date"
+                    value={creditCardExpirationDate}
+                    onChange={(event) => setCreditCardExpirationDate(event.target.value)}
+                />
+                <input
+                    type="text"
+                    placeholder="CVC#"
+                    value={creditCardCVC}
+                    onChange={(event) => setCreditCardCVC(event.target.value)}
+                />
+                <button className="paymentButton" type="submit"> Checkout </button>
+            </form>
+        </section>
+    )
+}
+
+export default PaymentInfo

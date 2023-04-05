@@ -116,6 +116,7 @@ const Cart = (props) => {
             </div>
             <div>
               <Link id="continueShoppingLink" to={`/cats`}>Continue shopping</Link>
+              <Link to={'/checkout'}> Checkout </Link>
             </div>
           </div>
         </div>
