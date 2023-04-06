@@ -23,6 +23,7 @@ const App = () => {
               setCurrentUser(data)
               console.log(data)
               console.log(currentUser)
+              console.log("current user")
           } catch (error) {
               console.log(error)
           }
@@ -38,7 +39,7 @@ const App = () => {
 
     const addItemToCart = (item) => {
         const index = cartItems.findIndex((cartItem) => cartItem.id === item.id);
-      
+      //fetch request
         if (index === -1) {
           setCartItems([...cartItems, { ...item, quantity: 1 }]);
         } else {
