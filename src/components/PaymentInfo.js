@@ -1,16 +1,16 @@
 import { useState, useEffect} from "react"
 
 const PaymentInfo = (props) => {
-    const { setIsLoggedIn } = props
+    const { setIsLoggedIn, currentUser } = props
     const [ creditCardName, setCreditCardName ] = useState("")
     const [ creditCard, setCreditCard ] = useState("")
     const [ creditCardExpirationDate, setCreditCardExpirationDate ] = useState("")
     const [ creditCardCVC, setCreditCardCVC ] = useState("")
 
-    async function Payment (event) {
-        event.preventDefault();
+    async function Payment () {
+        // event.preventDefault();
         try {
-            const response = await fetch(`http://localhost:1337/api/orders/id`, {
+            const response = await fetch(`http://localhost:1337/api/orders/${currentUser.id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -22,7 +22,9 @@ const PaymentInfo = (props) => {
                     creditCardExpirationDate: creditCardExpirationDate,
                     creditCardCVC: creditCardCVC,
                 })
-            });
+            }) 
+            const result = await response.json();
+            console.log(result)
         } catch (error) {
             console.log(error)
         }

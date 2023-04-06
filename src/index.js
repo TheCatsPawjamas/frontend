@@ -6,7 +6,35 @@ import { Navbar, Homepage, Login, SingleProduct, Cats, Registration, Cart, Payme
 const App = () => { 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [cartItems, setCartItems] = useState([]);
+    const [currentUser, setCurrentUser] = useState({})
 
+    async function fetchCurrentUser(){
+      if (localStorage.token){
+          try {
+              const response = await fetch(`http://localhost:1337/api/users/me`, {
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.token}`
+                  },
+                });
+
+              const data = await response.json();
+
+              setCurrentUser(data)
+              console.log(data)
+              console.log(currentUser)
+          } catch (error) {
+              console.log(error)
+          }
+      }
+      else{
+          setCurrentUser("")
+      }
+  }
+
+  useEffect(()=>{
+      fetchCurrentUser();
+  },[])
 
     const addItemToCart = (item) => {
         const index = cartItems.findIndex((cartItem) => cartItem.id === item.id);
@@ -44,13 +72,13 @@ const App = () => {
                 <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
                 <Routes>
                     <Route path='/' element={<Homepage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
-                    <Route path='/login' element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
-                    <Route path='/register' element={<Registration isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
+                    <Route path='/login' element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setCurrentUser = {setCurrentUser}/>}/>
+                    <Route path='/register' element={<Registration isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setCurrentUser = {setCurrentUser}/>}/>
                     <Route path='/cats' element={<Cats addItemToCart={addItemToCart} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
                     <Route path='/cats/:id' element={<SingleProduct addItemToCart={addItemToCart} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
                     <Route path='/cart' element={<Cart cartItems={cartItems} addItemToCart={addItemToCart} removeItemFromCart={removeItemFromCart} />} />
                     <Route path='/profile' element={<Profilepage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
-                    <Route path='/checkout' element={<PaymentInfo isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
+                    <Route path='/checkout' element={<PaymentInfo isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} />} />
                 </Routes> 
             </div>
         </BrowserRouter> 

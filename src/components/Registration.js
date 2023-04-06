@@ -8,6 +8,7 @@ const Registration = (props) => {
     const [ username, setUsername ] = useState("")
     const [ password, setPassword ] = useState("")
     const [ email, setEmail ] = useState ("")
+    const { setCurrentUser } = props 
 
 
     async function accountRegistration (event) {
@@ -45,6 +46,7 @@ const Registration = (props) => {
                 const myJWT = resultData.token;
                 localStorage.setItem("token", myJWT)
                 setIsLoggedIn(!isLoggedIn);
+                setCurrentUser(resultData.user)
                 navigate('/');
             }
         } catch (error) {
