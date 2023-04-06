@@ -27,7 +27,7 @@ const Navbar = (props) => {
                         {/* {isLoggedIn ?<Link to='/myroutines' className="headerButton"> My Orders </Link>: undefined } */}
                         {/* {!isLoggedIn ? undefined: <Link to='/cart'><img src={cart}></img></Link>} */}
                         
-                        {/* {isLoggedIn ? <Link to='/myroutines' className="headerButton"> My Routines </Link> : <a href="#" onClick={() => alert("error")} className="headerButton"> My Routines </a>} */}
+                        {isLoggedIn ? <Link to='/profile' id="loginNavbar"> Profile </Link> : <a href="#" onClick={() => alert("error")} className="headerButton"></a>}
                         {/* <Link to='/activities' className="headerButton"> Activities </Link> */}
                         {!isLoggedIn ? <Link to='/login' id="loginNavbar"> Login </Link> : <Link onClick={handleLogout} className="headerButton"> Logout </Link>}
                         <Link to='/cart' id='cartImgNavbar'><img src={cart} id="cartImg"></img></Link>

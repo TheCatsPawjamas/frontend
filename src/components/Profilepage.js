@@ -12,7 +12,7 @@ const Settings = (props) => {
 };
 
 const Profilepage = (props) => {
-
+    const {currentUser} = props;
     const [ username, setUsername ] = useState("");
     const [ userPassword, setUserPassword ] = useState("");
     const [ userEmail, setUserEmail ] = useState("");
@@ -32,7 +32,7 @@ const Profilepage = (props) => {
     const fetchUserData = async () => {
         const tokenKey = localStorage.getItem("token");
         try {
-            const response = await fetch('http://localhost:1337/api/users', {
+            const response = await fetch('http://localhost:1337/api/users/me', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${tokenKey}`
@@ -55,7 +55,7 @@ const Profilepage = (props) => {
         setIsEditing(false);
         const tokenKey = localStorage.getItem("token");
         try {
-            const response = await fetch('http://localhost:1337/api/users', {
+            const response = await fetch(`http://localhost:1337/api/users/${currentUser.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
