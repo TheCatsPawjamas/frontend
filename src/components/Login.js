@@ -10,6 +10,7 @@ const Login = (props) => {
     const {isLoggedIn, setIsLoggedIn} = props;
     const [ username, setUsername ] = useState("");
     const [ password, setPassword ] = useState("");
+    const { setCurrentUser } = props 
 
     async function loginFunction(event) {
         event.preventDefault();
@@ -32,7 +33,7 @@ const Login = (props) => {
             } else {
                 const myJWT = result.token;
                 localStorage.setItem("token", myJWT)
-                // setCurrentUser(result.user)
+                setCurrentUser(result.user)
                 setIsLoggedIn(!isLoggedIn);
                 navigate('/');
             }
