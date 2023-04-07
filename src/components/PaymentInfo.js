@@ -1,4 +1,5 @@
 import { useState, useEffect} from "react"
+import { Link } from "react-router-dom"
 
 const PaymentInfo = (props) => {
     const { setIsLoggedIn, currentUser } = props
@@ -40,6 +41,7 @@ const PaymentInfo = (props) => {
         }
     }, []);
     
+    // do we need another fetch request that complete the order
     return (
         <section> 
             <h3> To continue, please provide your payment information below</h3>
@@ -69,7 +71,7 @@ const PaymentInfo = (props) => {
                     value={creditCardCVC}
                     onChange={(event) => setCreditCardCVC(event.target.value)}
                 />
-                <button className="paymentButton" type="submit"> Checkout </button>
+                <Link to="/purchasecomplete"><button className="paymentButton" type="submit"> Checkout </button> </Link>
             </form>
         </section>
     )
