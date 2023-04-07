@@ -67,6 +67,9 @@ const Profilepage = (props) => {
             });
             const result = await response.json();
             console.log(result)
+            if(result){
+                setIsEditing(true);
+            }
         } catch (error) {
             throw error;
         }
