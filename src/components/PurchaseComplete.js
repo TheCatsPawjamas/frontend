@@ -20,3 +20,5 @@ const PurchaseComplete = (props) => {
     //     </section>
     // )
 }
+
+export default PurchaseComplete;

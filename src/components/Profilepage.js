@@ -79,6 +79,8 @@ const Profilepage = (props) => {
         setIsEditing(false);
     }
 
+    console.log("This is the profilepage's cart items: ");
+    console.log(cartItems);
 
     return (
         <div className='profilePage'>
@@ -100,8 +102,9 @@ const Profilepage = (props) => {
                 {cartItems && cartItems.length > 0 ? (
                     cartItems.map((item) => (
                         <div key={item.id}>
-                            <p className='profileOrderText'>Adopted Kitty: {item.items}</p>
-                            <p className='profileOrderText'>Prrrice: {item.totalPrice}</p>
+                            <p className='profileOrderText'>Adopted Kitty: {item.name}</p>
+                            <p className='profileOrderText'>Prrrice: ${item.adoptionFee}</p>
+                            <p className='profileOrderText'><img src={item.imageURL}/></p>
                     </div>
                 ))
             ) : (
