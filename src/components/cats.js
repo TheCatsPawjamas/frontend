@@ -11,7 +11,7 @@ const Cats = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/cats?q=${search}`);
+        const response = await fetch(`${BASE_URL}/cats`);
         const result = await response.json();
         setCats(result);
       } catch (error) {
@@ -19,7 +19,7 @@ const Cats = (props) => {
       }
     };
     fetchData();
-  }, [search]);
+  },[]);
 
   const handleSearchChange = (event) => {
     setSearch(event.target.value);
@@ -27,12 +27,11 @@ const Cats = (props) => {
 
   const handleAddToCart = (cat) => {
     props.addItemToCart({
-      id: cat.id,
+      catId: cat.id,
       name: cat.name,
-      price: cat.adoptionFee,
-      quantity: 1,
+      adoptionFee: cat.adoptionFee,
 
-      image: cat.imageURL
+      imageURL: cat.imageURL
 
     });
   };
@@ -40,7 +39,7 @@ const Cats = (props) => {
   return (
     <div>
       <h1 id="catHeader">Adoptable Cats</h1>
-      <input className="searchbar" type="text" value={search} onChange={handleSearchChange} />
+      <input className="searchbar" type="text" onChange={handleSearchChange} />
       {cats.length > 0 && cats.map(cat => (
         <div key={cat.id}>
           <div id="catProfile">

@@ -7,29 +7,37 @@ const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [cartItems, setCartItems] = useState([]);
     const [currentUser, setCurrentUser] = useState({})
-    const [userId, setUserId] = useState();                 //should be storing the Id in state when we call /users/me
+    const [userId, setUserId] = useState();                
+    const [orderId, setOrderId] = useState();
     // const db = require('./db');
-    
-
-
-                                         
-
+                                        
     async function fetchCurrentUser(){
       if (localStorage.token){
           try {
-              const response = await fetch(`http://localhost:1337/api/users/me`, {
+              const currentUserResponse = await fetch(`http://localhost:1337/api/users/me`, {
                   headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.token}`
                   },
                 });
 
-              const data = await response.json();
+              const currentUserData = await currentUserResponse.json();
 
-              setCurrentUser(data)
-              setUserId(data.id);
-              console.log(data.id)
-              console.log("current user")
+              setCurrentUser(currentUserData)
+              setUserId(currentUserData.id);
+              
+              const cartResponse = await fetch(`http://localhost:1337/api/orders/cart/${currentUserData.id}`, {
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${localStorage.token}`
+                },
+              });
+    
+            const cartData = await cartResponse.json();
+    
+            // console.log("our cart: ");
+            // console.log(cartData);
+            setOrderId(cartData.id);
           } catch (error) {
               console.log(error)
           }
@@ -44,26 +52,54 @@ const App = () => {
       
   },[])
   useEffect(()=>{
-    console.log(userId);
+    console.log(orderId);
     fetchCart();
-  },[userId]);
+  },[orderId]);
+
   async function fetchCart(){     //new fetch call
       try {
-        const response = await fetch(`http://localhost:1337/api/orders/cart/${userId}`, {
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${localStorage.token}`
-            },
-          });
-
-        const data = await response.json();
-
-        console.log("our cart: ");
-        console.log(data);
-        setCartItems(data);
-        console.log("current user")
+        const response = await fetch(`http://localhost:1337/api/orders/${orderId}`, {
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${localStorage.token}`
+                },
+              });
+    
+            const data = await response.json();
+    
+            // console.log("our cats: ");
+            // console.log(data);
+            // console.log(data.cats);
+            setCartItems(data.cats);
     } catch (error) {
         console.log(error)
+    }
+  }
+
+  async function addCatToCart(item){
+    try {
+      const response = await fetch(`http://localhost:1337/api/orders/${orderId}/cats`,{
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.token}`,
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With'
+        },
+        body: JSON.stringify({
+          catId: item.catId,
+          adoptionFee: item.adoptionFee
+        })
+      })
+      const data = await response.json();
+      console.log(data);
+
+      setCartItems([...cartItems, data]);
+
+
+    } catch (error) {
+      
     }
   }
 
@@ -71,15 +107,18 @@ const App = () => {
     const addItemToCart = (item) => {
         const index = cartItems.findIndex((cartItem) => cartItem.id === item.id);
       //fetch request
-      // fetchCart();       
+      // fetchCart();
+          
        //added this into the addItemsToCart function
         if (index === -1) {
-          setCartItems([...cartItems, { ...item, quantity: 1 }]);
-        } else {
-          const updatedCartItems = [...cartItems];
-          updatedCartItems[index].quantity++;
-          setCartItems(updatedCartItems);
-        }
+          addCatToCart(item)   
+          // setCartItems([...cartItems, { ...item, quantity: 1 }]);
+        } 
+        // else {
+        //   const updatedCartItems = [...cartItems];
+        //   updatedCartItems[index].quantity++;
+        //   setCartItems(updatedCartItems);
+        // }
       };
 
     const removeItemFromCart = (item) => {
@@ -97,34 +136,10 @@ const App = () => {
         }
       
         setCartItems(updatedItems);
-      };
+      };      
 
-    // async function addItemToCart(catId, orderId, adoptionFee) {
-    //   try {
-    //     const purchase = await db.addCatsToOrders({
-    //       catId,
-    //       orderId,
-    //       adoptionFee
-    //     });
-    //     return purchase;
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // }
-    
-    // async function removeItemFromCart(purchaseId) {
-    //   try {
-    //     const purchase = await db.getPurchasesById(purchaseId);
-    //     await db.deletePurchases(purchaseId);
-    //     return purchase;
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // }
-      
-
-    console.log(userId);
-    console.log(currentUser);
+    // console.log(userId);
+    // console.log(currentUser);
     console.log(cartItems);
     return ( 
         <BrowserRouter>
@@ -137,7 +152,7 @@ const App = () => {
                     <Route path='/cats' element={<Cats addItemToCart={addItemToCart} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
                     <Route path='/cats/:id' element={<SingleProduct addItemToCart={addItemToCart} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
                     <Route path='/cart' element={<Cart cartItems={cartItems} addItemToCart={addItemToCart} removeItemFromCart={removeItemFromCart} />} />
-                    <Route path='/profile' element={<Profilepage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser}/>}/>
+                    <Route path='/profile' element={<Profilepage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} cartItem={cartItems}/>}/>
                     <Route path='/checkout' element={<PaymentInfo isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} />} />
                 </Routes> 
             </div>
