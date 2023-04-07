@@ -7,6 +7,8 @@ const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [cartItems, setCartItems] = useState([]);
     const [currentUser, setCurrentUser] = useState({})
+    const [userId, setUserId] = useState();                 //should be storing the Id in state when we call /users/me
+    let ourUserId = 0;                                      
 
     async function fetchCurrentUser(){
       if (localStorage.token){
@@ -21,7 +23,10 @@ const App = () => {
               const data = await response.json();
 
               setCurrentUser(data)
-              console.log(data)
+              setUserId(data.id);
+              ourUserId = data.id;
+              console.log(userId);
+              console.log(data.id)
               console.log(currentUser)
               console.log("current user")
           } catch (error) {
@@ -36,10 +41,32 @@ const App = () => {
   useEffect(()=>{
       fetchCurrentUser();
   },[])
+  
+  async function fetchCart(){     //new fetch call
+      try {
+        const response = await fetch(`http://localhost:1337/api/orders/cart/${ourUserId}`, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.token}`
+            },
+          });
+
+        const data = await response.json();
+
+        console.log("our cart: ");
+        console.log(data);
+        // setCartItems(data);
+        console.log("current user")
+    } catch (error) {
+        console.log(error)
+    }
+  }
 
     const addItemToCart = (item) => {
         const index = cartItems.findIndex((cartItem) => cartItem.id === item.id);
       //fetch request
+      fetchCart();        //added this into the addItemsToCart function
+
         if (index === -1) {
           setCartItems([...cartItems, { ...item, quantity: 1 }]);
         } else {
