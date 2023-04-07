@@ -8,7 +8,7 @@ const Cart = (props) => {
 
 
   const [items, setItems] = useState(
-    cartItems.map((item) => ({ ...item, initialPrice: item.price * item.quantity }))
+    cartItems ? cartItems.map((item) => ({ ...item, initialPrice: item.price})): []
   );
 
 
@@ -22,7 +22,9 @@ const Cart = (props) => {
 
 
   useEffect(() => {
-    setItems(cartItems.map((item) => ({ ...item, initialPrice: item.price * item.quantity })));
+    if(cartItems) {
+      setItems( cartItems.map((item) => ({ ...item, initialPrice: item.price})))
+    } ;
   }, [cartItems]);
 
 
@@ -36,15 +38,15 @@ const Cart = (props) => {
   }, [items, pajamasCount]);
 
 
-  const handleQuantityChange = (item, quantity) => {
-    const updatedItems = items.map((i) => {
-      if (i.id === item.id) {
-        return { ...i, quantity, initialPrice: i.price * quantity };
-      }
-      return i;
-    });
-    setItems(updatedItems);
-  };
+  // const handleQuantityChange = (item, quantity) => {
+  //   const updatedItems = items.map((i) => {
+  //     if (i.id === item.id) {
+  //       return { ...i, quantity, initialPrice: i.price * quantity };
+  //     }
+  //     return i;
+  //   });
+  //   setItems(updatedItems);
+  // };
 
 
   const handleAddToCart = (item) => {
@@ -83,23 +85,23 @@ const Cart = (props) => {
                   <div className="cartItemQuantity">
                     <button
                       onClick={() => {
-                        const newQuantity = item.quantity > 1 ? item.quantity - 1 : 1;
-                        handleQuantityChange(item, newQuantity);
+                        // const newQuantity = item.quantity > 1 ? item.quantity - 1 : 1;
+                        // handleQuantityChange(item, newQuantity);
                         removeItemFromCart(item, -1);
                       }}
                     >
                       -
                     </button>
-                    <p>{item.quantity}</p>
+                    {/* <p>{item.quantity}</p>
                     <button
                       onClick={() => {
-                        const newQuantity = item.quantity + 1;
-                        handleQuantityChange(item, newQuantity);
+                        // const newQuantity = item.quantity + 1;
+                        // handleQuantityChange(item, newQuantity);
                         addItemToCart(item);
                       }}
                     >
                       +
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </div>
