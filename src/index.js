@@ -9,9 +9,10 @@ const App = () => {
     const [currentUser, setCurrentUser] = useState({})
     const [userId, setUserId] = useState();                 //should be storing the Id in state when we call /users/me
     // const db = require('./db');
+    
 
 
-    let ourUserId = 0;                                      
+                                         
 
     async function fetchCurrentUser(){
       if (localStorage.token){
@@ -27,10 +28,7 @@ const App = () => {
 
               setCurrentUser(data)
               setUserId(data.id);
-              ourUserId = data.id;
-              console.log(userId);
               console.log(data.id)
-              console.log(currentUser)
               console.log("current user")
           } catch (error) {
               console.log(error)
@@ -43,11 +41,15 @@ const App = () => {
 
   useEffect(()=>{
       fetchCurrentUser();
+      
   },[])
-  
+  useEffect(()=>{
+    console.log(userId);
+    fetchCart();
+  },[userId]);
   async function fetchCart(){     //new fetch call
       try {
-        const response = await fetch(`http://localhost:1337/api/orders/cart/${ourUserId}`, {
+        const response = await fetch(`http://localhost:1337/api/orders/cart/${userId}`, {
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${localStorage.token}`
@@ -58,18 +60,19 @@ const App = () => {
 
         console.log("our cart: ");
         console.log(data);
-        // setCartItems(data);
+        setCartItems(data);
         console.log("current user")
     } catch (error) {
         console.log(error)
     }
   }
 
+
     const addItemToCart = (item) => {
         const index = cartItems.findIndex((cartItem) => cartItem.id === item.id);
       //fetch request
-      fetchCart();        //added this into the addItemsToCart function
-
+      // fetchCart();       
+       //added this into the addItemsToCart function
         if (index === -1) {
           setCartItems([...cartItems, { ...item, quantity: 1 }]);
         } else {
@@ -120,6 +123,9 @@ const App = () => {
     // }
       
 
+    console.log(userId);
+    console.log(currentUser);
+    console.log(cartItems);
     return ( 
         <BrowserRouter>
             <div> 
