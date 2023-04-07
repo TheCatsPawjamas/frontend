@@ -94,7 +94,7 @@ const PaymentInfo = (props) => {
                     value={creditCardCVC}
                     onChange={(event) => setCreditCardCVC(event.target.value)}
                 />
-                <Link to="/purchasecomplete"><button id="paymentButton" type="submit"> Checkout </button> </Link>
+                <Link to="/purchasecomplete"><button id="paymentButton" type="submit"> Submit Order </button> </Link>
             </form>
         </section>
     )
