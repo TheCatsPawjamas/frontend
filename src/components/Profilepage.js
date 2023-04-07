@@ -68,7 +68,7 @@ const Profilepage = (props) => {
             const result = await response.json();
             console.log(result)
             if(result){
-                setIsEditing(true);
+                // setIsEditing(true);
             }
         } catch (error) {
             throw error;
@@ -82,7 +82,7 @@ const Profilepage = (props) => {
 
     return (
         <div className='profilePage'>
-            <Settings>
+            <Settings className='profileSettingsComp'>
                 <button onClick={handleEditClick}>Edit Profile</button>
                 <div className='profileUpdateContent'>
                     <label>Username:</label>
@@ -92,18 +92,22 @@ const Profilepage = (props) => {
                     <label>Email:</label>
                     <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                     <button onClick={handleSaveClick}>Save</button>
-                    <button onClick={handleCancelClick}>Cancel</button>
+                    <button onClick={() => {handleCancelClick(); toggleSettings();}}>Cancel</button>
                 </div>
             </Settings>
-            {/* <div className='profileOrders'>
-                <h2 className='profileOrdersHeader'>All Orders</h2>
-                {cartItems.map((item) => (
-                    <div key={item.id}>
-                        <p className='profileOrderText'>Adopted Kitty: {item.items}</p>
-                        <p className='profileOrderText'>Prrrice: {item.totalPrice}</p>
+            <div className='profileOrders'>
+                <h2 className='profileOrdersHeader'>Your Previous Orders</h2>
+                {cartItems && cartItems.length > 0 ? (
+                    cartItems.map((item) => (
+                        <div key={item.id}>
+                            <p className='profileOrderText'>Adopted Kitty: {item.items}</p>
+                            <p className='profileOrderText'>Prrrice: {item.totalPrice}</p>
                     </div>
-                ))}
-            </div> */}
+                ))
+            ) : (
+                <p>No Orders Found</p>
+            )}
+            </div>
         </div>
     )
 }
