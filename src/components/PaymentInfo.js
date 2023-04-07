@@ -8,6 +8,16 @@ const PaymentInfo = (props) => {
     const [ creditCardExpirationDate, setCreditCardExpirationDate ] = useState("")
     const [ creditCardCVC, setCreditCardCVC ] = useState("")
 
+    useEffect ( () => {
+        if (localStorage.getItem("token")) {
+            setIsLoggedIn(true);
+            Payment()
+        } else {
+            setIsLoggedIn(false)
+            console.log("No token exist")
+        }
+    }, []);
+
     async function Payment () {
         // event.preventDefault();
         try {
@@ -30,48 +40,40 @@ const PaymentInfo = (props) => {
             console.log(error)
         }
     }
-
-    useEffect ( () => {
-        if (localStorage.getItem("token")) {
-            setIsLoggedIn(true);
-            Payment()
-        } else {
-            setIsLoggedIn(false)
-            console.log("No token exist")
-        }
-    }, []);
     
     // do we need another fetch request that complete the order
+    
+
     return (
-        <section> 
+        <section id="paymentSection"> 
             <h3> To continue, please provide your payment information below</h3>
 
-            <form onSubmit={Payment}> 
-                <input
+            <form id="paymentForm"onSubmit={Payment}> 
+                <input id="nameOnCC"className="paymentBox"
                     type="text"
                     placeholder="Name On Card"
                     value={creditCardName}
                     onChange={(event) => setCreditCardName(event.target.value)}
                 />
-                <input
+                <input id="CCNumber" className="paymentBox"
                     type="text"
                     placeholder="Credit Card Number"
                     value={creditCard}
                     onChange={(event) => setCreditCard(event.target.value)}
                 />
-                <input
+                <input id="expirationDate" className="paymentBox"
                     type="text"
                     placeholder="Expiration Date"
                     value={creditCardExpirationDate}
                     onChange={(event) => setCreditCardExpirationDate(event.target.value)}
                 />
-                <input
+                <input id="cvc" className="paymentBox"
                     type="text"
                     placeholder="CVC#"
                     value={creditCardCVC}
                     onChange={(event) => setCreditCardCVC(event.target.value)}
                 />
-                <Link to="/purchasecomplete"><button className="paymentButton" type="submit"> Checkout </button> </Link>
+                <Link to="/purchasecomplete"><button id="paymentButton" type="submit"> Checkout </button> </Link>
             </form>
         </section>
     )
