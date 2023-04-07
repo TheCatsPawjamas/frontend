@@ -8,6 +8,9 @@ const App = () => {
     const [cartItems, setCartItems] = useState([]);
     const [currentUser, setCurrentUser] = useState({})
     const [userId, setUserId] = useState();                 //should be storing the Id in state when we call /users/me
+    // const db = require('./db');
+
+
     let ourUserId = 0;                                      
 
     async function fetchCurrentUser(){
@@ -92,6 +95,29 @@ const App = () => {
       
         setCartItems(updatedItems);
       };
+
+    // async function addItemToCart(catId, orderId, adoptionFee) {
+    //   try {
+    //     const purchase = await db.addCatsToOrders({
+    //       catId,
+    //       orderId,
+    //       adoptionFee
+    //     });
+    //     return purchase;
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // }
+    
+    // async function removeItemFromCart(purchaseId) {
+    //   try {
+    //     const purchase = await db.getPurchasesById(purchaseId);
+    //     await db.deletePurchases(purchaseId);
+    //     return purchase;
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // }
       
 
     return ( 
