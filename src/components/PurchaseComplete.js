@@ -10,13 +10,13 @@ const PurchaseComplete = (props) => {
         setMessage("Your order is complete, please come and pick your new furry friend from 1234 Purrr Ln, Meow Paws 123480")
     }
 
-    return (
-        <section>
-            <div>
-                <p>{confirmation}</p>
-                <p>{message}</p>
-                <p>Order ID: {orderId}</p>
-            </div>
-        </section>
-    )
+    // return (
+    //     <section>
+    //         <div>
+    //             <p>{confirmation}</p>
+    //             <p>{message}</p>
+    //             <p>Order ID: {orderId}</p>
+    //         </div>
+    //     </section>
+    // )
 }

@@ -42,7 +42,19 @@ const PaymentInfo = (props) => {
     }
     
     // do we need another fetch request that complete the order
-    
+    async function CompleteOrder () {
+        try {
+            const response = await fetch(`http://localhost:1337/api/orders/purchaseComplete`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <section id="paymentSection"> 
