@@ -103,6 +103,40 @@ const App = () => {
     }
   }
 
+  async function deleteCatFromCart(item) {
+    try {
+      console.log(item);
+      console.log(item.catId);
+      console.log(orderId);
+        // const response = await fetch(`${process.env.DATABASE_URL}/api/routines/${event.target.value}`,
+        const response = await fetch(`http://localhost:1337/api/purchases/${item.catId}/${orderId}`,
+        {
+            method: "DELETE",
+            headers: {
+                'Content-Type' : 'application/json',
+                'Authorization' : `Bearer ${localStorage.getItem("token")}`
+            }
+        })
+        const translatedResponse = await response.json();
+        console.log(translatedResponse)
+        if (translatedResponse.success) {
+            let filteredCartItems = cartItems.filter((singleCat) => {
+                if (singleCat.catId != translatedResponse.destroyPurchase.catId) {
+                    return singleCat
+                }
+            })
+            console.log("This is my filtered cart items after deleting: ");
+            console.log(filteredCartItems);
+            setCartItems(filteredCartItems);
+
+            // myRoutines = filteredMyRoutines
+        }
+    
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
     const addItemToCart = (item) => {
         const index = cartItems.findIndex((cartItem) => cartItem.id === item.id);
@@ -122,20 +156,20 @@ const App = () => {
       };
 
     const removeItemFromCart = (item) => {
-        const existingItemIndex = cartItems.findIndex((cartItem) => cartItem.id === item.id);
-        const existingItem = cartItems[existingItemIndex];
+       // let updatedItems = [];
+       console.log(item);
+        deleteCatFromCart(item);
+        // if (existingItem.quantity === 1) {
+
+        //   updatedItems = cartItems.filter((cartItem) => cartItem.id !== item.id);
+        // } 
+        // else {
+        //   const updatedItem = { ...existingItem, quantity: existingItem.quantity - 1 };
+        //   updatedItems = [...cartItems];
+        //   updatedItems[existingItemIndex] = updatedItem;
+        // }
       
-        let updatedItems = [];
-      
-        if (existingItem.quantity === 1) {
-          updatedItems = cartItems.filter((cartItem) => cartItem.id !== item.id);
-        } else {
-          const updatedItem = { ...existingItem, quantity: existingItem.quantity - 1 };
-          updatedItems = [...cartItems];
-          updatedItems[existingItemIndex] = updatedItem;
-        }
-      
-        setCartItems(updatedItems);
+        // setCartItems(updatedItems);
       };      
 
     // console.log(userId);
