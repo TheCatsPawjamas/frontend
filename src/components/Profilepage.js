@@ -22,7 +22,6 @@ const Profilepage = (props) => {
         if (localStorage.getItem("token")) {
             props.setIsLoggedIn(true);
             fetchUserData();
-            fetchOrders();
         } else {
             props.setIsLoggedIn(false);
         }
@@ -52,20 +51,22 @@ const Profilepage = (props) => {
     const handleSaveClick = async () => {
         setIsEditing(false);
         const tokenKey = localStorage.getItem("token");
+        console.log(currentUser.id);
         try {
             const response = await fetch(`http://localhost:1337/api/users/${currentUser.id}`, {
-                method: 'PUT',
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${tokenKey}`
                 },
                 body: JSON.stringify({
                     username: username,
-                    newPassword: newPassword,
+                    password: newPassword,
                     email: email
                 })
             });
             const result = await response.json();
+            console.log(result)
         } catch (error) {
             throw error;
         }
@@ -91,7 +92,7 @@ const Profilepage = (props) => {
                     <button onClick={handleCancelClick}>Cancel</button>
                 </div>
             </Settings>
-            <div className='profileOrders'>
+            {/* <div className='profileOrders'>
                 <h2 className='profileOrdersHeader'>All Orders</h2>
                 {cartItems.map((item) => (
                     <div key={item.id}>
@@ -99,7 +100,7 @@ const Profilepage = (props) => {
                         <p className='profileOrderText'>Prrrice: {item.totalPrice}</p>
                     </div>
                 ))}
-            </div>
+            </div> */}
         </div>
     )
 }
