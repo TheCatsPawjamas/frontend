@@ -7,3 +7,4 @@ export {default as SingleProduct} from "./SingleProducts";
 export {default as Cart} from "./Cart";
 export { default as PaymentInfo } from "./PaymentInfo"
 export {default as Profilepage} from "./Profilepage";
+export {default as PurchaseComplete} from "./PurchaseComplete";
