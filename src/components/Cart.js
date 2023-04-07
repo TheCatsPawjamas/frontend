@@ -7,35 +7,32 @@ const Cart = (props) => {
   const { cartItems, addItemToCart, removeItemFromCart } = props;
 
 
-  const [items, setItems] = useState(
-    cartItems ? cartItems.map((item) => ({ ...item, initialPrice: item.price})): []
-  );
+  // const [items, setItems] = useState(
+  //   cartItems ? cartItems.map((item) => ({ ...item, initialPrice: item.price})): []
+  // );
 
 
   const [pajamasCount, setPajamasCount] = useState(0);
 
 
-  const [totalPrice, setTotalPrice] = useState(items.reduce(
-    (accumulator, current) => accumulator + current.initialPrice,
-    0
-  ));
+  const [totalPrice, setTotalPrice] = useState([]);
+    
+  //   cartItems.reduce(
+  //   (accumulator, current) => accumulator + current.adoptionFee,
+  //   0
+  // ));
 
 
-  useEffect(() => {
-    if(cartItems) {
-      setItems( cartItems.map((item) => ({ ...item, initialPrice: item.price})))
-    } ;
-  }, [cartItems]);
 
 
-  useEffect(() => {
-    setPajamasCount(0);
-  }, [cartItems]);
+  // useEffect(() => {
+  //   setPajamasCount(0);
+  // }, [cartItems]);
 
 
-  useEffect(() => {
-    setTotalPrice(items.reduce((accumulator, current) => accumulator + current.initialPrice, 0) + (pajamasCount * 25));
-  }, [items, pajamasCount]);
+  // useEffect(() => {
+  //   setTotalPrice(cartItems.reduce((accumulator, current) => accumulator + current.adoptionFee, 0) + (pajamasCount * 25));
+  // }, [cartItems, pajamasCount]);
 
 
   // const handleQuantityChange = (item, quantity) => {
@@ -58,6 +55,9 @@ const Cart = (props) => {
     addItemToCart(updatedItem);
   };
 
+  // useEffect(()=>{
+
+  // },[cartItems])
 
   const handleAddPajamas = () => {
     setTotalPrice(totalPrice + 25);
@@ -68,26 +68,26 @@ const Cart = (props) => {
   return (
     <div className="cart">
       <h2>Your Cart</h2>
-      {items.length === 0 ? (
+      {cartItems.length === 0 && !cartItems ? (
         <p id="emptyCart">Your cart is empty</p>
       ) : (
         <div>
           <div className="cartItems">
-            {items.map((item) => (
+            {cartItems.map((item) => (
               <div key={item.id} className="cartItem">
                 <div >
-                  <img className="cartItemImage" src={item.image} alt={item.name} />
+                  <img className="cartItemImage" src={item.imageURL} alt={item.name} />
                 </div>
                 <div className="cartItemDetails">
                   <p className="cartItemName">{item.name}</p>
-                  <p className="cartItemPrice">${Number(item.price) * item.quantity}</p>
+                  <p className="cartItemPrice">${Number(item.adoptionFee)}</p>
 
                   <div className="cartItemQuantity">
                     <button
                       onClick={() => {
                         // const newQuantity = item.quantity > 1 ? item.quantity - 1 : 1;
                         // handleQuantityChange(item, newQuantity);
-                        removeItemFromCart(item, -1);
+                        removeItemFromCart(item);
                       }}
                     >
                       -
