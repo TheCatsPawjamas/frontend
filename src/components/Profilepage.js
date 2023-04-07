@@ -5,19 +5,18 @@ const Settings = (props) => {
     const toggleSettings = () => setIsOpen(!isOpen);
     return (
         <div>
-            <button onClick={toggleSettings}>{props.children[0]}</button>
-            {isOpen && <div>{props.children[1]}</div>}
+            {props.children && <button onClick={toggleSettings}>{props.children[0]}</button>}
+            {isOpen && props.children && <div>{props.children[1]}</div>}
         </div>
     );
 };
 
 const Profilepage = (props) => {
-    const {currentUser} = props;
+    const {currentUser, cartItems} = props;
     const [ username, setUsername ] = useState("");
-    const [ userPassword, setUserPassword ] = useState("");
-    const [ userEmail, setUserEmail ] = useState("");
+    const [ newPassword, setNewPassword ] = useState("");
+    const [ email, setEmail ] = useState("");
     const [isEditing, setIsEditing] = useState(false);
-    const [orders, setOrders] = useState([]);
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
@@ -40,8 +39,7 @@ const Profilepage = (props) => {
             });
             const result = await response.json();
             setUsername(result.username);
-            setUserPassword(result.password);
-            setUserEmail(result.email);
+            setEmail(result.email);
         } catch (error) {
             throw error;
         }
@@ -63,8 +61,8 @@ const Profilepage = (props) => {
                 },
                 body: JSON.stringify({
                     username: username,
-                    password: userPassword,
-                    email: userEmail
+                    newPassword: newPassword,
+                    email: email
                 })
             });
             const result = await response.json();
@@ -77,43 +75,28 @@ const Profilepage = (props) => {
         setIsEditing(false);
     }
 
-    const fetchOrders = async () => {
-        const tokenKey = localStorage.getItem("token");
-        try {
-            const response = await fetch('',{
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${tokenKey}`
-                },
-            });
-            const result = await response.json();
-            setOrders(result);
-        } catch (error) {
-            throw error;
-        }
-    }
 
     return (
-        <div>
+        <div className='profilePage'>
             <Settings>
                 <button onClick={handleEditClick}>Edit Profile</button>
-                <div>
+                <div className='profileUpdateContent'>
                     <label>Username:</label>
                     <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-                    <label>Password:</label>
-                    <input type="password" value={userPassword} onChange={(e) => setUserPassword(e.target.value)} />
+                    <label>New Password:</label>
+                    <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
                     <label>Email:</label>
-                    <input type="email" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} />
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                     <button onClick={handleSaveClick}>Save</button>
                     <button onClick={handleCancelClick}>Cancel</button>
                 </div>
             </Settings>
-            <div>
-                <h2>Orders</h2>
-                {orders.map((order) => (
-                    <div key={order.id}>
-                        <p>Adopted Kitty: {order.productName}</p>
-                        <p>Prrrice: {order.price}</p>
+            <div className='profileOrders'>
+                <h2 className='profileOrdersHeader'>All Orders</h2>
+                {cartItems.map((item) => (
+                    <div key={item.id}>
+                        <p className='profileOrderText'>Adopted Kitty: {item.items}</p>
+                        <p className='profileOrderText'>Prrrice: {item.totalPrice}</p>
                     </div>
                 ))}
             </div>
