@@ -1,5 +1,6 @@
 import { useState, useEffect} from "react"
 import { Link } from "react-router-dom"
+import "./PaymentInfo.css"
 
 const PaymentInfo = (props) => {
     const { setIsLoggedIn, currentUser } = props
