@@ -34,6 +34,7 @@ const Navbar = (props) => {
                  
                         {isLoggedIn ? <Link to='/profile' id="loginNavbar"> Profile </Link> : <a href="#" onClick={() => alert("error")} className="headerButton"></a>}
                         {/* isLoggedIn && isAdmin==true ? <Link to='/admin'*/}
+                        
                         {!isLoggedIn ? <Link to='/login' id="loginNavbar"> Login </Link> : <Link onClick={handleLogout} className="headerButton"> Logout </Link>}
                         <Link to='/cart' id='cartImgNavbar'><img src={cart} id="cartImg"></img></Link>
                     </div>  
