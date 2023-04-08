@@ -196,7 +196,7 @@ const App = () => {
     return ( 
         <BrowserRouter>
             <div> 
-                <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setCartItems={setCartItems} setCurrentUser={setCurrentUser} setOrderId={setOrderId} setUserId={setUserId}/>
+                <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setCartItems={setCartItems} setCurrentUser={setCurrentUser} setOrderId={setOrderId} setUserId={setUserId} isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>
                 <Routes>
                     <Route path='/' element={<Homepage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
                     <Route path='/login' element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setCurrentUser = {setCurrentUser}/>}/>
