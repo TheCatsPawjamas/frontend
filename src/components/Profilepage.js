@@ -68,7 +68,7 @@ const Profilepage = (props) => {
             const result = await response.json();
             console.log(result)
             if(result){
-                // setIsEditing(true);
+                setIsEditing(false);
             }
         } catch (error) {
             throw error;
@@ -77,6 +77,7 @@ const Profilepage = (props) => {
 
     const handleCancelClick = () => {
         setIsEditing(false);
+        toggleSettings();
     }
 
     console.log("This is the profilepage's cart items: ");
