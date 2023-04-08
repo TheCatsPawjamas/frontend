@@ -1,5 +1,6 @@
 import { useState, useEffect} from "react"
 import { Link } from "react-router-dom"
+import "./PaymentInfo.css"
 
 const PaymentInfo = (props) => {
     const { setIsLoggedIn, currentUser } = props
@@ -58,34 +59,42 @@ const PaymentInfo = (props) => {
 
     return (
         <section id="paymentSection"> 
-            <h3> To continue, please provide your payment information below</h3>
+            <h3 id="paymentHeader"> To continue, please provide your payment information below</h3>
 
-            <form id="paymentForm"onSubmit={Payment}> 
-                <input id="nameOnCC"className="paymentBox"
+            <form className="paymentForm"onSubmit={Payment}> 
+
+                <label> Full Name </label>
+                <input id="nameOnCC" className="paymentBox"
                     type="text"
                     placeholder="Name On Card"
                     value={creditCardName}
                     onChange={(event) => setCreditCardName(event.target.value)}
                 />
+
+                <label> Credit Card Number</label>
                 <input id="CCNumber" className="paymentBox"
                     type="text"
-                    placeholder="Credit Card Number"
+                    placeholder="1234567891234"
                     value={creditCard}
                     onChange={(event) => setCreditCard(event.target.value)}
                 />
+
+                <label> Expiration Date</label>
                 <input id="expirationDate" className="paymentBox"
                     type="text"
-                    placeholder="Expiration Date"
+                    placeholder="MM/YY"
                     value={creditCardExpirationDate}
                     onChange={(event) => setCreditCardExpirationDate(event.target.value)}
                 />
+
+                <label> CVC </label>
                 <input id="cvc" className="paymentBox"
                     type="text"
-                    placeholder="CVC#"
+                    placeholder="0000"
                     value={creditCardCVC}
                     onChange={(event) => setCreditCardCVC(event.target.value)}
                 />
-                <Link to="/purchasecomplete"><button id="paymentButton" type="submit"> Checkout </button> </Link>
+                <Link to="/purchasecomplete"><button id="paymentButton" type="submit"> Submit Order </button> </Link>
             </form>
         </section>
     )
