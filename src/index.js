@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Navbar, Homepage, Login, SingleProduct, Cats, Registration, Cart, PaymentInfo, Profilepage } from "./components";
+import { Navbar, Homepage, Login, SingleProduct, Cats, Registration, Cart, PaymentInfo, Profilepage, PurchaseComplete } from "./components";
 
 const App = () => { 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -10,6 +10,15 @@ const App = () => {
     const [userId, setUserId] = useState();                
     const [orderId, setOrderId] = useState();
     // const db = require('./db');
+
+    useEffect(()=>{
+      if(localStorage.getItem('token')){
+        setIsLoggedIn(true)
+      }else{
+        setIsLoggedIn(false);
+
+      }
+    });
                                         
     async function fetchCurrentUser(){
       if (localStorage.token){
@@ -53,8 +62,10 @@ const App = () => {
   },[])
   useEffect(()=>{
     console.log(orderId);
-    fetchCart();
-  },[orderId]);
+    if(localStorage.getItem('token') && orderId> 0){
+      fetchCart();
+    }
+  },[orderId,isLoggedIn]);
 
   async function fetchCart(){     //new fetch call
       try {
@@ -178,16 +189,17 @@ const App = () => {
     return ( 
         <BrowserRouter>
             <div> 
-                <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
+                <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setCartItems={setCartItems} setCurrentUser={setCurrentUser} setOrderId={setOrderId} setUserId={setUserId}/>
                 <Routes>
                     <Route path='/' element={<Homepage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
                     <Route path='/login' element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setCurrentUser = {setCurrentUser}/>}/>
                     <Route path='/register' element={<Registration isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setCurrentUser = {setCurrentUser}/>}/>
                     <Route path='/cats' element={<Cats addItemToCart={addItemToCart} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
                     <Route path='/cats/:id' element={<SingleProduct addItemToCart={addItemToCart} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
-                    <Route path='/cart' element={<Cart cartItems={cartItems} addItemToCart={addItemToCart} removeItemFromCart={removeItemFromCart} />} />
-                    <Route path='/profile' element={<Profilepage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} cartItem={cartItems}/>}/>
+                    <Route path='/cart' element={<Cart cartItems={cartItems} addItemToCart={addItemToCart} removeItemFromCart={removeItemFromCart} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
+                    <Route path='/profile' element={<Profilepage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} cartItems={cartItems}/>}/>
                     <Route path='/checkout' element={<PaymentInfo isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} />} />
+                    <Route path='/purchasecomplete' element={<PurchaseComplete isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} cartItem={cartItems}/>}/>
                 </Routes> 
             </div>
         </BrowserRouter> 
