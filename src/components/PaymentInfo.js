@@ -9,6 +9,7 @@ const PaymentInfo = (props) => {
     const [ creditCard, setCreditCard ] = useState("")
     const [ creditCardExpirationDate, setCreditCardExpirationDate ] = useState("")
     const [ creditCardCVC, setCreditCardCVC ] = useState("")
+    // const [ isSubmitting, setIsSubmitting ] = useState(false) 
 
 
     useEffect ( () => {
@@ -39,9 +40,13 @@ const PaymentInfo = (props) => {
             }) 
             const result = await response.json();
             console.log(result)
+            
+
+            await CompleteOrder()
         } catch (error) {
             console.log(error)
         }
+        // setIsSubmitting(false)
     }
     
     // do we need another fetch request that complete the order
@@ -61,11 +66,12 @@ const PaymentInfo = (props) => {
         }
     }
 
+    const formComplete = creditCardName && creditCard && creditCardExpirationDate && creditCardCVC
     return (
         <section id="paymentSection"> 
             <h3 id="paymentHeader"> To continue, please provide your payment information below</h3>
 
-            <form className="paymentForm"onSubmit={Payment}> 
+            <form className="paymentForm"onSubmit={CompleteOrder}> 
 
                 <label> Full Name </label>
                 <input id="nameOnCC" className="paymentBox"
@@ -105,6 +111,8 @@ const PaymentInfo = (props) => {
 }
 
 export default PaymentInfo
+
+
 
 // import {
 //     MDBBtn,
