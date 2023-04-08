@@ -61,7 +61,7 @@ const currentPageData = cats
     <Link id="cartLink" to="/cart" onClick={() => handleAddToCart(cat)}> 
       Add to Cart 
     </Link>
-  </div> </div>
+  </div>  </div>
 ));
 
 const pageCount = Math.ceil(cats.length / PER_PAGE);
