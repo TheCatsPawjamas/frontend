@@ -1,31 +1,34 @@
 import { useState, useEffect} from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 // import "./PaymentInfo.css"
 import React from "react";
 
 const PaymentInfo = (props) => {
-    const { setIsLoggedIn, currentUser, cartItems } = props
+    const { setIsLoggedIn, currentUser, cartItems, orderId } = props
     const [ creditCardName, setCreditCardName ] = useState("")
     const [ creditCard, setCreditCard ] = useState("")
     const [ creditCardExpirationDate, setCreditCardExpirationDate ] = useState("")
     const [ creditCardCVC, setCreditCardCVC ] = useState("")
     // const [ isSubmitting, setIsSubmitting ] = useState(false) 
+    const navigate = useNavigate();
 
 
     useEffect ( () => {
         if (localStorage.getItem("token")) {
             setIsLoggedIn(true);
-            Payment()
+            // Payment()
         } else {
             setIsLoggedIn(false)
             console.log("No token exist")
         }
     }, []);
 
-    async function Payment () {
-        // event.preventDefault();
+    async function Payment (event) {
+        event.preventDefault();
+        // currentUser.id
         try {
-            const response = await fetch(`http://localhost:1337/api/orders/${currentUser.id}`, {
+            console.log(orderId);
+            const response = await fetch(`http://localhost:1337/api/orders/${orderId}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -40,9 +43,12 @@ const PaymentInfo = (props) => {
             }) 
             const result = await response.json();
             console.log(result)
-            
+            if(Object.keys(result).length){
+                navigate("/purchasecomplete")
 
-            await CompleteOrder()
+            }
+
+            // await CompleteOrder()
         } catch (error) {
             console.log(error)
         }
@@ -71,7 +77,9 @@ const PaymentInfo = (props) => {
         <section id="paymentSection"> 
             <h3 id="paymentHeader"> To continue, please provide your payment information below</h3>
 
-            <form className="paymentForm"onSubmit={CompleteOrder}> 
+            {/* <form className="paymentForm"onSubmit={CompleteOrder}>  */}
+            <form className="paymentForm"onSubmit={Payment}> 
+
 
                 <label> Full Name </label>
                 <input id="nameOnCC" className="paymentBox"
@@ -104,7 +112,9 @@ const PaymentInfo = (props) => {
                     value={creditCardCVC}
                     onChange={(event) => setCreditCardCVC(event.target.value)}
                 />
-                <Link to="/purchasecomplete"><button id="paymentButton" type="submit"> Submit Order </button> </Link>
+                <button id="paymentButton" type="submit"> Submit Order </button>
+                {/* <Link to="/purchasecomplete"><button id="paymentButton" type="submit"> Submit Order </button> </Link> */}
+
             </form>
         </section>
     )

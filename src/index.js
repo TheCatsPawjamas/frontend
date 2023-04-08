@@ -9,6 +9,7 @@ const App = () => {
     const [currentUser, setCurrentUser] = useState({})
     const [userId, setUserId] = useState();                
     const [orderId, setOrderId] = useState();
+    const [isAdmin, setIsAdmin] = useState(null);
     // const db = require('./db');
 
     useEffect(()=>{
@@ -34,6 +35,7 @@ const App = () => {
 
               setCurrentUser(currentUserData)
               setUserId(currentUserData.id);
+              setIsAdmin(currentUserData.admin);
               
               const cartResponse = await fetch(`http://localhost:1337/api/orders/cart/${currentUserData.id}`, {
                 headers: {
@@ -56,13 +58,17 @@ const App = () => {
       }
   }
 
-  useEffect(()=>{
-      fetchCurrentUser();
+  // useEffect(()=>{
+  //     fetchCurrentUser();
       
-  },[])
+  // },[])
+
+  //ask violet about this useEffect and the one above
   useEffect(()=>{
+    fetchCurrentUser();
     console.log(orderId);
     if(localStorage.getItem('token') && orderId> 0){
+      console.log("Hitting the fetched cart async function");
       fetchCart();
     }
   },[orderId,isLoggedIn]);
@@ -184,8 +190,9 @@ const App = () => {
       };      
 
     // console.log(userId);
-    // console.log(currentUser);
+    console.log(currentUser);
     console.log(cartItems);
+    console.log(isAdmin);
     return ( 
         <BrowserRouter>
             <div> 
@@ -198,8 +205,8 @@ const App = () => {
                     <Route path='/cats/:id' element={<SingleProduct addItemToCart={addItemToCart} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
                     <Route path='/cart' element={<Cart cartItems={cartItems} addItemToCart={addItemToCart} removeItemFromCart={removeItemFromCart} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
                     <Route path='/profile' element={<Profilepage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} cartItems={cartItems}/>}/>
-                    <Route path='/checkout' element={<PaymentInfo isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} />} />
-                    <Route path='/purchasecomplete' element={<PurchaseComplete isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} cartItem={cartItems}/>}/>
+                    <Route path='/checkout' element={<PaymentInfo isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} orderId={orderId}/>} />
+                    <Route path='/purchasecomplete' element={<PurchaseComplete isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} cartItem={cartItems} orderId={orderId}/>}/>
                 </Routes> 
             </div>
         </BrowserRouter> 
