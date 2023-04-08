@@ -48,20 +48,21 @@ const currentPageData = cats
   .slice(offset, offset + PER_PAGE)
   .map((cat) => (
     <div key={cat.id}>
-    <div id="catProfile">
-    <h2>{cat.name}</h2>
-    <img id="catImage" src={cat.imageURL}></img>
-    <p>{cat.name}'s Breed: {cat.breed}</p>
-    <p>Adoption Fee: ${cat.adoptionFee}</p>
+      <div id="catProfile">
+        <h2>{cat.name}</h2>
+        <img id="catImage" src={cat.imageURL}></img>
+        <p>{cat.name}'s Breed: {cat.breed}</p>
+        <p>Adoption Fee: ${cat.adoptionFee}</p>
 
-    <Link id="SingleProductsLink" to={`/cats/${cat.id}`}>
-      View {cat.name}'s details
-    </Link>
+        <Link id="SingleProductsLink" to={`/cats/${cat.id}`}>
+          View {cat.name}'s details
+        </Link>
 
-    <Link id="cartLink" to="/cart" onClick={() => handleAddToCart(cat)}> 
-      Add to Cart 
-    </Link>
-  </div>  </div>
+        <Link id="cartLink" to="/cart" onClick={() => handleAddToCart(cat)}> 
+          Add to Cart 
+        </Link>
+      </div>  
+    </div>
 ));
 
 const pageCount = Math.ceil(cats.length / PER_PAGE);
