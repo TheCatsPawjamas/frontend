@@ -10,6 +10,7 @@ const App = () => {
     const [userId, setUserId] = useState();                
     const [orderId, setOrderId] = useState();
     const [isAdmin, setIsAdmin] = useState(null);
+    const [totalPrice, setTotalPrice] = useState([]);
     // const db = require('./db');
 
     useEffect(()=>{
@@ -162,7 +163,8 @@ const App = () => {
           
        //added this into the addItemsToCart function
         if (index === -1) {
-          addCatToCart(item)   
+          addCatToCart(item)
+          setTotalPrice(Number(totalPrice) + Number(item.adoptionFee));   
           // setCartItems([...cartItems, { ...item, quantity: 1 }]);
         } 
         // else {
@@ -203,10 +205,10 @@ const App = () => {
                     <Route path='/register' element={<Registration isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setCurrentUser = {setCurrentUser}/>}/>
                     <Route path='/cats' element={<Cats addItemToCart={addItemToCart} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
                     <Route path='/cats/:id' element={<SingleProduct addItemToCart={addItemToCart} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
-                    <Route path='/cart' element={<Cart cartItems={cartItems} addItemToCart={addItemToCart} removeItemFromCart={removeItemFromCart} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
+                    <Route path='/cart' element={<Cart cartItems={cartItems} addItemToCart={addItemToCart} removeItemFromCart={removeItemFromCart} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} totalPrice={totalPrice} setTotalPrice={setTotalPrice}/>} />
                     <Route path='/profile' element={<Profilepage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} cartItems={cartItems}/>}/>
-                    <Route path='/checkout' element={<PaymentInfo isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} orderId={orderId}/>} />
-                    <Route path='/purchasecomplete' element={<PurchaseComplete isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} cartItems={cartItems} orderId={orderId}/>}/>
+                    <Route path='/checkout' element={<PaymentInfo isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} orderId={orderId} totalPrice={totalPrice} setTotalPrice={setTotalPrice}/>} />
+                    <Route path='/purchasecomplete' element={<PurchaseComplete isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} cartItems={cartItems} orderId={orderId} totalPrice={totalPrice} setTotalPrice={setTotalPrice}/>}/>
                     <Route path='/admincats' element={<AdminCats isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>} />
                 </Routes> 
             </div>
