@@ -43,7 +43,7 @@ const PurchaseComplete = (props) => {
                 <h2> {currentUser.username}, Review Order Details </h2>
                 
                 {/* {
-                    cartItems.filter(item => item.creditCard === currentUser.creditCard).map((thing) => (
+                    cartItemss.filter(item => item.creditCard === currentUser.creditCard).map((thing) => (
                         <div key={thing}>
                             <p>{thing.creditCard}</p>
                             <p> Name On Credit Card: {thing.creditCardName}</p>
