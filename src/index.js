@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Navbar, Homepage, Login, SingleProduct, Cats, Registration, Cart, PaymentInfo, Profilepage, PurchaseComplete, AdminCats } from "./components";
+import { Navbar, Homepage, Login, SingleProduct, Cats, Registration, Cart, PaymentInfo, Profilepage, PurchaseComplete, AdminCats, AdminUsers, AdminHomepage } from "./components";
 
 const App = () => { 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -209,7 +209,9 @@ const App = () => {
                     <Route path='/profile' element={<Profilepage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} cartItems={cartItems}/>}/>
                     <Route path='/checkout' element={<PaymentInfo isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} orderId={orderId} totalPrice={totalPrice} setTotalPrice={setTotalPrice}/>} />
                     <Route path='/purchasecomplete' element={<PurchaseComplete isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} cartItems={cartItems} orderId={orderId} totalPrice={totalPrice} setTotalPrice={setTotalPrice}/>}/>
-                    <Route path='/admincats' element={<AdminCats isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>} />
+                    <Route path='/admincats' element={<AdminCats isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} currentUser={currentUser}/>} />
+                    <Route path='/adminusers' element={<AdminUsers isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} currentUser={currentUser}/>}/>
+                    <Route path='/adminhomepage' element={<AdminHomepage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} currentUser={currentUser}/>}/>
                 </Routes> 
             </div>
         </BrowserRouter> 
