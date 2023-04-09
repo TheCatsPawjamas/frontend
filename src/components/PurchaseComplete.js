@@ -49,12 +49,12 @@ const PurchaseComplete = (props) => {
                             <p> Credit Card Number: {thing.creditCard}</p>
                         </div>
                     ))
-                }
+                } */}
 
                 {/* {!cartItems.length && <div> Your Cart Is Empty </div>} */}
                  
                 {
-                    cartItem.filter(item => item.creditCard === currentUser.creditCard).map((product) => {
+                    cartItems.filter(item => item.creditCard === currentUser.creditCard).map((product) => {
                         return (
                             <section key={product.id}>
                                 <p> Cart: {product.name} </p>
@@ -131,5 +131,5 @@ export default PurchaseComplete;
         //         <p> orderId: {}</p>
         //     </div>
         // </section> */} */}
-    }
+                }
 
