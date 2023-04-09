@@ -2,7 +2,7 @@ import React from "react"
 import { useState } from "react"
 
 const PurchaseComplete = (props) => {
-    const { setIsLoggedIn, currentUser, cartItem, orderId } = props
+    const { setIsLoggedIn, currentUser, cartItems, orderId } = props
     const [ confirmation, setConfirmation ] = useState("")
     const [ message, setMessage ] = useState("")
 
@@ -42,7 +42,7 @@ const PurchaseComplete = (props) => {
             <div>
                 <h2> {currentUser.username}, Review Order Details </h2>
                 {
-                    cartItem.filter(item => item.creditCard === currentUser.creditCard).map((thing) => (
+                    cartItems.filter(item => item.creditCard === currentUser.creditCard).map((thing) => (
                         <div key={thing}>
                             <p>{thing.creditCard}</p>
                             <p> Name On Credit Card: {thing.creditCardName}</p>
