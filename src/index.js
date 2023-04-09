@@ -209,7 +209,7 @@ const App = () => {
                     <Route path='/profile' element={<Profilepage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} cartItems={cartItems}/>}/>
                     <Route path='/checkout' element={<PaymentInfo isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} orderId={orderId} totalPrice={totalPrice} setTotalPrice={setTotalPrice}/>} />
                     <Route path='/purchasecomplete' element={<PurchaseComplete isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} cartItems={cartItems} orderId={orderId} totalPrice={totalPrice} setTotalPrice={setTotalPrice}/>}/>
-                    <Route path='/admincats' element={<AdminCats isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>} />
+                    <Route path='/admincats' element={<AdminCats isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} currentUser={currentUser}/>} />
                 </Routes> 
             </div>
         </BrowserRouter> 
