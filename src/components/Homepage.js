@@ -15,14 +15,16 @@ const Homepage= (props) => {
 
     return(
         <div id="home">
-            <div id="catHomepage">
-                <img src={catMeme} id="catMeme"></img>
-            </div>
-            <div className='homeContent'>
-                <h1 className='homeContent'>Welcome to The Cats Pawjamas! Feel free to look at all the Purrrfect Kitties and login/register when you're ready grab one out of our paws!</h1>               
-                <Link id="loginHyperlink" to='/login'> Click here to Login to your account </Link>
-                {/* <br/> */}
-                <Link id='registerHyperlink' to='/register'>Click here to register for a free account</Link>
+            <div id="homeContainer">
+                <div id="catHomepage">
+                    <img src={catMeme} id="catMeme"></img>
+                </div>
+                <div className='homeContent'>
+                    <h1 className='homeContent'>Welcome to The Cats Pawjamas! Feel free to look at all the Purrrfect Kitties and login/register when you're ready to grab one out of our paws!</h1>               
+                    <Link id="loginHyperlink" to='/login'> Login to an existing acount </Link>
+                    {/* <br/> */}
+                    <Link id='registerHyperlink' to='/register'> Register for a new account </Link>
+                </div>
             </div>
             
   
