@@ -2,7 +2,7 @@ import React from "react"
 import { useState } from "react"
 
 const PurchaseComplete = (props) => {
-    const { setIsLoggedIn, currentUser, cartItem, orderId } = props
+    const { setIsLoggedIn, currentUser, cartItems, orderId } = props
     const [ confirmation, setConfirmation ] = useState("")
     const [ message, setMessage ] = useState("")
 
@@ -41,20 +41,21 @@ const PurchaseComplete = (props) => {
         <section id="purchaseCompleteSection">
             <div>
                 <h2> {currentUser.username}, Review Order Details </h2>
-                {
-                    cartItem.filter(item => item.creditCard === currentUser.creditCard).map((thing) => (
+                
+                {/* {
+                    cartItems.filter(item => item.creditCard === currentUser.creditCard).map((thing) => (
                         <div key={thing}>
                             <p>{thing.creditCard}</p>
                             <p> Name On Credit Card: {thing.creditCardName}</p>
                             <p> Credit Card Number: {thing.creditCard}</p>
                         </div>
                     ))
-                }
+                } */}
 
                 {/* {!cartItems.length && <div> Your Cart Is Empty </div>} */}
                  
                 {
-                    cartItem.filter(item => item.creditCard === currentUser.creditCard).map((product) => {
+                    cartItems.filter(item => item.creditCard === currentUser.creditCard).map((product) => {
                         return (
                             <section key={product.id}>
                                 <p> Cart: {product.name} </p>
@@ -131,5 +132,5 @@ export default PurchaseComplete;
         //         <p> orderId: {}</p>
         //     </div>
         // </section> */} */}
-    }
+                }
 
