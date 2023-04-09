@@ -54,23 +54,6 @@ const PaymentInfo = (props) => {
         }
         // setIsSubmitting(false)
     }
-    
-    // do we need another fetch request that complete the order
-    async function CompleteOrder () {
-        try {
-            const response = await fetch(`http://localhost:1337/api/orders/purchaseComplete`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${localStorage.getItem("token")}`
-                }
-            })
-            const result = await response.json();
-            console.log(result)
-        } catch (error) {
-            console.log(error)
-        }
-    }
 
     const formComplete = creditCardName && creditCard && creditCardExpirationDate && creditCardCVC
     return (
@@ -112,7 +95,7 @@ const PaymentInfo = (props) => {
                     value={creditCardCVC}
                     onChange={(event) => setCreditCardCVC(event.target.value)}
                 />
-                <button id="paymentButton" type="submit"> Submit Order </button>
+                <button id="paymentButton" type="submit"> Review Details </button>
                 {/* <Link to="/purchasecomplete"><button id="paymentButton" type="submit"> Submit Order </button> </Link> */}
 
             </form>
