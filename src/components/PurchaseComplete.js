@@ -49,7 +49,7 @@ const PurchaseComplete = (props) => {
                             <p> Credit Card Number: {thing.creditCard}</p>
                         </div>
                     ))
-                } */}
+                } 
 
                 {/* {!cartItems.length && <div> Your Cart Is Empty </div>} */}
                  
