@@ -4,7 +4,7 @@ import './Cart.css';
 
 const Cart = (props) => {
 
-  const { cartItems, addItemToCart, removeItemFromCart, isLoggedIn, setIsLoggedIn } = props;
+  const { cartItems, addItemToCart, removeItemFromCart, isLoggedIn, setIsLoggedIn, totalPrice, setTotalPrice } = props;
 
 
   // const [items, setItems] = useState(
@@ -15,7 +15,7 @@ const Cart = (props) => {
   const [pajamasCount, setPajamasCount] = useState(0);
 
 
-  const [totalPrice, setTotalPrice] = useState([]);
+ 
     
   //   cartItems.reduce(
   //   (accumulator, current) => accumulator + current.adoptionFee,
@@ -47,12 +47,14 @@ const Cart = (props) => {
 
 
   const handleAddToCart = (item) => {
-    const updatedItem = {
-      ...item,
-      quantity: item.quantity + 1,
-      updatedPrice: (item.updatedPrice || item.price) + item.price,
-    };
-    addItemToCart(updatedItem);
+    // const updatedItem = {
+    //   ...item,
+    //   quantity: item.quantity + 1,
+    //   updatedPrice: (item.updatedPrice || item.price) + item.price,
+    // };
+    // addItemToCart(updatedItem);
+    // setTotalPrice(...totalPrice );
+    // setTotalPrice(totalP)
   };
 
   // useEffect(()=>{
@@ -60,7 +62,7 @@ const Cart = (props) => {
   // },[cartItems])
 
   const handleAddPajamas = () => {
-    setTotalPrice(totalPrice + 25);
+    setTotalPrice(Number(totalPrice) + 25);
     setPajamasCount(pajamasCount + 1);
   }
 
