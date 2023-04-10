@@ -41,7 +41,7 @@ const EditForm = (props) => {
   
         if (Object.keys(updatedCat).length) {
            
-            const updatedCats = cats.map((cat) =>
+            const updatedCat = cats.map((cat) =>
               cat.id === catId
                 ? {
                     ...cat,
@@ -75,10 +75,10 @@ const EditForm = (props) => {
 
 return (
     <div>
-          <div id="nameAndImage">
-                  {/* <img id="catImage" src={cat.imageURL} />
-                  <p id="catName">{cat.name}</p> */}
-                </div>
+          {/* <div id="nameAndImage">
+                  <img id="catImage" src={cat.imageURL} />
+                  <p id="catName">{cat.name}</p>
+                </div> */}
             
                 <div>
                   
