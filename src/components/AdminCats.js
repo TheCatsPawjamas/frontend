@@ -179,66 +179,66 @@ const AdminCats = (props) => {
   // }
   
 
-  const handleEdit = (catId) => {
-    // event.preventDefault();
-    updateCat(catId);
-  };
+  // const handleEdit = (catId) => {
+  //   // event.preventDefault();
+  //   updateCat(catId);
+  // };
 
-  // const updateCat = async (catId, e) => {
-    async function updateCat(catId) {
-      // event.preventDefault();
-      const response = await fetch(`http://localhost:1337/api/cats/${catId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-          body: JSON.stringify({
-            name: name,
-            breed: breed,
-            age: age,
-            temperament: temperament,
-            outdoor: outdoor,
-            adoptionFee: adoptionFee,
-            imageURL: imageURL
-          }
-        ),
-      });
+  // // const updateCat = async (catId, e) => {
+  //   async function updateCat(catId) {
+  //     // event.preventDefault();
+  //     const response = await fetch(`http://localhost:1337/api/cats/${catId}`, {
+  //       method: "PATCH",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //         body: JSON.stringify({
+  //           name: name,
+  //           breed: breed,
+  //           age: age,
+  //           temperament: temperament,
+  //           outdoor: outdoor,
+  //           adoptionFee: adoptionFee,
+  //           imageURL: imageURL
+  //         }
+  //       ),
+  //     });
     
-      const updatedCat = await response.json();
+  //     const updatedCat = await response.json();
 
-      if (Object.keys(updatedCat).length) {
+  //     if (Object.keys(updatedCat).length) {
          
-          const updatedCats = cats.map((cat) =>
-            cat.id === catId
-              ? {
-                  ...cat,
-                  name: name,
-                  breed: breed,
-                  age: age,
-                  temperament: temperament,
-                  outdoor: outdoor,
-                  adoptionFee: adoptionFee,
-                  imageURL: imageURL,
-                }
-              : cat
-          );
-        // setCats([...cats, newCat]);
-        setName("");
-        setBreed("");
-        setAge(0);
-        setTemperament("");
-        setOutdoor(false);
-        setAdoptionFee(0);
-        setImageURL("");
+  //         const updatedCat = cats.map((cat) =>
+  //           cat.id === catId
+  //             ? {
+  //                 ...cat,
+  //                 name: name,
+  //                 breed: breed,
+  //                 age: age,
+  //                 temperament: temperament,
+  //                 outdoor: outdoor,
+  //                 adoptionFee: adoptionFee,
+  //                 imageURL: imageURL,
+  //               }
+  //             : cat
+  //         );
+  //       // setCats([...cats, newCat]);
+  //       setName("");
+  //       setBreed("");
+  //       setAge(0);
+  //       setTemperament("");
+  //       setOutdoor(false);
+  //       setAdoptionFee(0);
+  //       setImageURL("");
       
-      } else {
-        const errorData = await response.json();
-        throw new Error(errorData.message);
-      }
-      return updatedCat;
+  //     } else {
+  //       const errorData = await response.json();
+  //       throw new Error(errorData.message);
+  //     }
+  //     return updatedCat;
      
   
-  };
+  // };
   
 
   return (
@@ -320,11 +320,12 @@ const AdminCats = (props) => {
           <ul>
             {cats.map((cat) => (
               <li key={cat.id}>
-                < EditForm />
+                {/* < EditForm /> */}
                 <div id="nameAndImage">
                   <img id="catImage" src={cat.imageURL} />
                   <p id="catName">{cat.name}</p>
                 </div>
+                < EditForm cat={cat}/>
             
                 <div>
                   
