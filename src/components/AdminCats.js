@@ -329,7 +329,7 @@ const AdminCats = (props) => {
                 <div>
                   
                 {/* <button onClick={() => handleEdit(cat.id)}>Edit</button> */}
-                <button className="button" onClick={handleEditCat}>Edit Cat</button>
+                {/* <button className="button" onClick={handleEditCat}>Edit Cat</button>
 
                       {showEdit ? (
                         <form onSubmit={updateCat}>
@@ -363,7 +363,7 @@ const AdminCats = (props) => {
                           </div>
                           <button className="button" type="submit">Update Cat</button>
                     </form>
-                        ) : null}
+                        ) : null} */}
                       
                 </div>
 
