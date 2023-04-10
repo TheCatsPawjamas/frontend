@@ -62,7 +62,6 @@ const PurchaseComplete = (props) => {
                         })
                 }
 
-                {/* filter through  */}
             <button onClick={CompleteOrder}> Submit Order </button>
             <p> {message}</p>
             <p> Confirmation Number: {confirmation}</p>
