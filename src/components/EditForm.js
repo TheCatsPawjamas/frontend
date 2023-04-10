@@ -1,31 +1,27 @@
 import React, { useState } from "react"
 
 const EditForm = (props) => {
-  const [cat, setCat] = useState(props.cat);
-  const [updatedCat, setUpdatedCat] = useState({});
-  const [cats, setCats] = useState([]);
-    const [name, setName] = useState("");
-    const [breed, setBreed] = useState("");
-    const [age, setAge] = useState(0);
-    const [temperament, setTemperament] = useState("");
-    const [outdoor, setOutdoor] = useState(false);
-    const [adoptionFee, setAdoptionFee] = useState(0);
-    const [imageURL, setImageURL] = useState("");
-    // const [showForm, setShowForm] = useState(false);
-    // const [showAllCats, setShowAllCats] = useState(false);
-    const [showEdit, setShowEdit] = useState(false);
 
-  const handleEditCat = () => {
-    setUpdatedCat({});
+const [cat, setCat] = useState(props.cat);
+const [updatedCat, setUpdatedCat] = useState({});
+const [name, setName] = useState("");
+const [breed, setBreed] = useState("");
+const [age, setAge] = useState(0);
+const [temperament, setTemperament] = useState("");
+const [outdoor, setOutdoor] = useState(false);
+const [adoptionFee, setAdoptionFee] = useState(0);
+const [imageURL, setImageURL] = useState("");
+const [showEdit, setShowEdit] = useState(false);
+
+const handleEditCat = () => {
+    // setUpdatedCat({});
     setCat(props.cat);
     setShowEdit(!showEdit);
+};
 
-  };
-
-  const handleSave = async (event) => {
-    event.preventDefault();
+const handleSave = async (event) => {
+    // event.preventDefault();
     try {
-       
     const response = await fetch(`http://localhost:1337/api/cats/${cat.id}`, {
       method: "PATCH",
       headers: {
@@ -40,9 +36,8 @@ const EditForm = (props) => {
         outdoor: outdoor, 
         adoptionFee: adoptionFee,
         imageURL: imageURL
+        })
     })
-    }
-    )
 
     const updatedCat = await response.json();
 
@@ -50,7 +45,7 @@ const EditForm = (props) => {
     } catch (error) {
         console.log(error)
     }
-  };
+};
 
 
   return (
@@ -60,35 +55,44 @@ const EditForm = (props) => {
   
         {showEdit ? (
         <form onSubmit={handleSave}>
+
             <div className="entry">
-              <label className="labelName" htmlFor="name">Name:</label>
-              <input type="text" className="entryBox" value={name} onChange={(e) => setName(e.target.value)} required />
+              <p className="labelName">Name:</p>
+              <input type="text" defaultValue={cat.name} className="entryBox" onChange={(event) => setName(event.target.value)}/>
             </div>
+
             <div className="entry">
-              <label className="labelName" htmlFor="breed">Breed:</label>
-              <input type="text" className="entryBox" value={breed} onChange={(e) => setBreed(e.target.value)} required />
+              <p className="labelName">Breed:</p>
+              <input type="text" defaultValue={cat.breed} className="entryBox" onChange={(event) => setBreed(event.target.value)}/>
             </div>
+
             <div className="entry">
-              <label className="labelName" htmlFor="age">Age:</label>
-              <input type="number" className="entryBox" value={age} onChange={(e) => setAge(Number(e.target.value))} required />
+              <p className="labelName">Age:</p>
+              <input type="number" defaultValue={cat.age} className="entryBox" onChange={(event) => setAge(Number(event.target.value))}/>
             </div>
+
             <div className="entry">
-              <label className="labelName" htmlFor="temperament">Temperament:</label>
-              <input type="text" className="entryBox" value={temperament} onChange={(e) => setTemperament(e.target.value)} required />
+              <p className="labelName">Temperament:</p>
+              <input type="text" defaultValue={cat.temperament} className="entryBox" onChange={(event) => setTemperament(event.target.value)}/>
             </div>
+
             <div className="entry">
-              <label className="labelName" htmlFor="outdoor">Outdoor:</label>
-              <input type="checkbox" className="checkbox" checked={outdoor} onChange={(e) => setOutdoor(e.target.checked)} />
+              <p className="labelName">Outdoor:</p>
+              <input type="checkbox" className="checkbox" checked={outdoor} onChange={(event) => setOutdoor(event.target.checked)}/>
             </div>
+
             <div className="entry">
-              <label className="labelName" htmlFor="adoptionFee">Adoption Fee:</label>
-              <input type="number" className="entryBox" value={adoptionFee} onChange={(e) => setAdoptionFee(Number(e.target.value))} required />
+              <p className="labelName">Adoption Fee:</p>
+              <input type="number" defaultValue={cat.adoptionFee} className="entryBox" onChange={(event) => setAdoptionFee(Number(event.target.value))}/>
             </div>
+
             <div className="entry">
-              <label className="labelName" htmlFor="imageURL">Image URL:</label>
-              <input type="text" className="entryBox" value={imageURL} onChange={(e) => setImageURL(e.target.value)} required />
+              <p className="labelName">Image URL:</p>
+              <input type="text" defaultValue={cat.imageURL} className="entryBox" onChange={(event) => setImageURL(event.target.value)}/>
             </div>
+
             <button className="button" type="submit">Update Cat</button>
+
           </form>
         ) : null}
       </div>
