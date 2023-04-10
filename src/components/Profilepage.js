@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import PurchaseComplete from './PurchaseComplete';
 
 const Settings = (props) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -17,6 +18,7 @@ const Profilepage = (props) => {
     const [ newPassword, setNewPassword ] = useState("");
     const [ email, setEmail ] = useState("");
     const [isEditing, setIsEditing] = useState(false);
+    const [confirmation, setConfirmation] = useState(false);
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
@@ -86,7 +88,7 @@ const Profilepage = (props) => {
     return (
         <div className='profilePage'>
             <Settings className='profileSettingsComp'>
-                <button onClick={handleEditClick}>Edit Profile</button>
+                <button className="profileSettingButton" onClick={handleEditClick}>Edit Profile</button>
                 <div className='profileUpdateContent'>
                     <label>Username:</label>
                     <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
@@ -94,12 +96,12 @@ const Profilepage = (props) => {
                     <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
                     <label>Email:</label>
                     <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                    <button onClick={handleSaveClick}>Save</button>
-                    <button onClick={() => {handleCancelClick(); toggleSettings();}}>Cancel</button>
+                    <button className="profileSettingButton" onClick={handleSaveClick}>Save</button>
+                    <button className="profileSettingButton" onClick={() => {handleCancelClick(); toggleSettings();}}>Cancel</button>
                 </div>
             </Settings>
             <div className='profileOrders'>
-                <h2 className='profileOrdersHeader'>Your Previous Orders</h2>
+                <h2 className='profileOrdersHeader'>Your Cart</h2>
                 {cartItems && cartItems.length > 0 ? (
                     cartItems.map((item) => (
                         <div key={item.id}>
@@ -111,6 +113,20 @@ const Profilepage = (props) => {
             ) : (
                 <p>No Orders Found</p>
             )}
+            </div>
+            <div className='completedPurchases'>
+                <h2 className='completedPurchasesHeader'>Past Purchases</h2>
+                {confirmation && confirmation.length > 0 ? (
+                    confirmation.map((item) => (
+                        <div key={item.id}>
+                            <p className='profilePurchaseText'>Adopted Kitty: {item.name}</p>
+                            <p className='profilePurchaseText'>Prrrice: ${item.adoptionFee}</p>
+                            <p className='profilePurchaseText'><img src={item.imageURL}/></p>
+                        </div>
+                    ))
+                ) : (
+                    <p>No Past Orders Found</p>
+                )}
             </div>
         </div>
     )
