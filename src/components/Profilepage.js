@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import PurchaseComplete from './PurchaseComplete';
 
 const Settings = (props) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -18,12 +17,13 @@ const Profilepage = (props) => {
     const [ newPassword, setNewPassword ] = useState("");
     const [ email, setEmail ] = useState("");
     const [isEditing, setIsEditing] = useState(false);
-    const [confirmation, setConfirmation] = useState(false);
+    const [pastPurchases,setPastPurchases] = useState([]);
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
             props.setIsLoggedIn(true);
             fetchUserData();
+            getPastPurchases();
         } else {
             props.setIsLoggedIn(false);
         }
@@ -53,7 +53,7 @@ const Profilepage = (props) => {
     const handleSaveClick = async () => {
         setIsEditing(false);
         const tokenKey = localStorage.getItem("token");
-        console.log(currentUser.id);
+        // console.log(currentUser.id);
         try {
             const response = await fetch(`http://localhost:1337/api/users/${currentUser.id}`, {
                 method: 'PATCH',
@@ -68,7 +68,7 @@ const Profilepage = (props) => {
                 })
             });
             const result = await response.json();
-            console.log(result)
+            // console.log(result)
             if(result){
                 setIsEditing(false);
             }
@@ -82,8 +82,31 @@ const Profilepage = (props) => {
         toggleSettings();
     }
 
-    console.log("This is the profilepage's cart items: ");
-    console.log(cartItems);
+    async function getPastPurchases(){
+        const tokenKey = localStorage.getItem("token");
+        try {
+            const response = await fetch(`http://localhost:1337/api/orders/finishedOrder/${currentUser.id}`,{
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${tokenKey}`
+                },
+            })
+
+            const result = await response.json();
+            console.log(result)
+            if(result){
+                setPastPurchases(result);
+                
+            }
+            
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
+
+    // console.log("This is the profilepage's cart items: ");
+    // console.log(cartItems);
 
     return (
         <div className='profilePage'>
@@ -116,12 +139,22 @@ const Profilepage = (props) => {
             </div>
             <div className='completedPurchases'>
                 <h2 className='completedPurchasesHeader'>Past Purchases</h2>
-                {confirmation && confirmation.length > 0 ? (
-                    confirmation.map((item) => (
-                        <div key={item.id}>
-                            <p className='profilePurchaseText'>Adopted Kitty: {item.name}</p>
-                            <p className='profilePurchaseText'>Prrrice: ${item.adoptionFee}</p>
-                            <p className='profilePurchaseText'><img src={item.imageURL}/></p>
+                {pastPurchases && pastPurchases.length > 0 ? (
+                    pastPurchases.map((item, index) => (
+                        <div key={index+1}>
+                            <p>Order #: {index+1}</p>
+                            <p>The Cats:</p>
+                            {
+                            item.cats.length ?   item.cats.map((individualCat)=>{
+                                    return(
+                                    <div key={individualCat.id}>
+                                        <p className='profilePurchaseText'>Adopted Kitty: {individualCat.name}</p>
+                                        <p className='profilePurchaseText'>Prrrice: ${individualCat.adoptionFee}</p>
+                                        <p className='profilePurchaseText'><img src={individualCat.imageURL}/></p>
+                                    </div>
+                                    )
+                                }) : <div>no Cats in that order</div>
+                            }
                         </div>
                     ))
                 ) : (
