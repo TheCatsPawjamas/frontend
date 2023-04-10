@@ -11,42 +11,47 @@ const EditForm = (props) => {
     const [outdoor, setOutdoor] = useState(false);
     const [adoptionFee, setAdoptionFee] = useState(0);
     const [imageURL, setImageURL] = useState("");
-    const [showForm, setShowForm] = useState(false);
-    const [showAllCats, setShowAllCats] = useState(false);
+    // const [showForm, setShowForm] = useState(false);
+    // const [showAllCats, setShowAllCats] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
 
   const handleEditCat = () => {
     setUpdatedCat({});
     setCat(props.cat);
     setShowEdit(!showEdit);
+
   };
 
-  const handleUpdateField = (field, value) => {
-    setUpdatedCat({ ...updatedCat, [field]: value });
-    setCat({ ...cat, [field]: value });
-    handleSave();
-  };
-
-  const handleSave = async () => {
+  const handleSave = async (event) => {
+    event.preventDefault();
+    try {
+       
     const response = await fetch(`http://localhost:1337/api/cats/${cat.id}`, {
       method: "PATCH",
       headers: {
+        "Authorization": `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(updatedCat),
-    });
+      body: JSON.stringify({ 
+        name: name,
+        breed: breed,
+        age: age,
+        temperament: temperament,
+        outdoor: outdoor, 
+        adoptionFee: adoptionFee,
+        imageURL: imageURL
+    })
+    }
+    )
 
     const updatedCat = await response.json();
 
-    if (Object.keys(updatedCat).length) {
-      setCat(updatedCat);
-      props.onUpdateCat(updatedCat);
-      setUpdatedCat({});
-    } else {
-      const errorData = await response.json();
-      throw new Error(errorData.message);
+    console.log(updatedCat)
+    } catch (error) {
+        console.log(error)
     }
   };
+
 
   return (
     <div>
@@ -54,9 +59,7 @@ const EditForm = (props) => {
         <button className="button" onClick={handleEditCat}>Edit Cat</button>
   
         {showEdit ? (
-        //   <form onSubmit={handleUpdate}>
-        // <form onSubmit={handleSave}>
-        <form onSubmit={handleUpdateField}>
+        <form onSubmit={handleSave}>
             <div className="entry">
               <label className="labelName" htmlFor="name">Name:</label>
               <input type="text" className="entryBox" value={name} onChange={(e) => setName(e.target.value)} required />

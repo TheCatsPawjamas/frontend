@@ -325,7 +325,7 @@ const AdminCats = (props) => {
                   <img id="catImage" src={cat.imageURL} />
                   <p id="catName">{cat.name}</p>
                 </div>
-                < EditForm />
+                < EditForm cat={cat}/>
             
                 <div>
                   
