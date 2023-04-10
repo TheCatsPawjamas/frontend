@@ -1,0 +1,41 @@
+.profilepage {
+    display: flex;
+}
+
+.profileSettingsComp {
+    display: flex;
+}
+
+.profileUpdateContent {
+    display: flex;
+}
+
+.profileSettingButton {
+    display: flex;
+}
+
+
+.profileOrders {
+    display: flex;
+}
+
+.profileOrdersHeader {
+    font-size: 25px;
+}
+
+.profileOrderText {
+    display: flex;
+}
+
+
+.completedPurchases {
+    display: flex;
+}
+
+.completedPurchasesHeader {
+    display:flex;
+}
+
+.profilePurchaseText {
+    display: flex;
+}
