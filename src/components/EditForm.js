@@ -20,7 +20,7 @@ const handleEditCat = () => {
 };
 
 const handleSave = async (event) => {
-    // event.preventDefault();
+    event.preventDefault();
     try {
     const response = await fetch(`http://localhost:1337/api/cats/${cat.id}`, {
       method: "PATCH",
