@@ -11,3 +11,4 @@ export {default as PurchaseComplete} from "./PurchaseComplete";
 export {default as AdminCats} from "./AdminCats";
 export {default as AdminUsers} from "./AdminUsers";
 export {default as AdminHomepage} from "./AdminHomepage";
+export {default as EditForm} from "./EditForm";
