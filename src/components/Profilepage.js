@@ -12,7 +12,8 @@ const Settings = (props) => {
 };
 
 const Profilepage = (props) => {
-    const {currentUser, cartItems} = props;
+    const {currentUser, cartItems, isOpen} = props;
+    const [openEditForm, setOpenEditForm] = useState(false);
     const [ username, setUsername ] = useState("");
     const [ newPassword, setNewPassword ] = useState("");
     const [ email, setEmail ] = useState("");
@@ -73,7 +74,8 @@ const Profilepage = (props) => {
             });
             const result = await response.json();
 
-                setIsEditing(false);
+            openEdit();
+                // setOpenEditForm(!openEditForm);
 
         } catch (error) {
             throw error;
@@ -86,6 +88,9 @@ const Profilepage = (props) => {
         toggleSettings();
         }
     };
+    function openEdit(){
+        setOpenEditForm(!openEditForm);
+    }
 
     async function getPastPurchases(){
         const tokenKey = localStorage.getItem("token");
@@ -113,7 +118,7 @@ const Profilepage = (props) => {
     return (
         <div className='profilePage'>
             <Settings className='profileSettingsComp'>
-                <button className="profileSettingButton" onClick={handleEditClick}>Edit Profile</button>
+                <button className="profileSettingButton" onClick={openEdit}>Edit Profile</button>
                 <div className='profileUpdateContent'>
                     <label>Username:</label>
                     <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
