@@ -242,43 +242,40 @@ const AdminCats = (props) => {
 
   return (
     <div>
-      <button onClick={handleButtonClick}>Add Cat</button>
+      <button className="button" onClick={handleButtonClick}>Add Cat</button>
       {showForm ? (
         <form onSubmit={createCat}>
-          <div>
-            <label htmlFor="name">Name:</label>
-            <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required />
+          <div className="entry">
+            <label className="labelName" htmlFor="name">Name:</label>
+            <input type="text" className="entryBox" value={name} onChange={(e) => setName(e.target.value)} required />
           </div>
-          <div>
-            <label htmlFor="breed">Breed:</label>
-            <input type="text" id="breed" value={breed} onChange={(e) => setBreed(e.target.value)} required />
+          <div className="entry">
+            <label className="labelName" htmlFor="breed">Breed:</label>
+            <input type="text" className="entryBox" value={breed} onChange={(e) => setBreed(e.target.value)} required />
           </div>
-          <div>
-            <label htmlFor="age">Age:</label>
-            <input type="number" id="age" value={age} onChange={(e) => setAge(Number(e.target.value))} required />
+          <div className="entry">
+            <label className="labelName" htmlFor="age">Age:</label>
+            <input type="number" className="entryBox" value={age} onChange={(e) => setAge(Number(e.target.value))} required />
           </div>
-          <div>
-            <label htmlFor="temperament">Temperament:</label>
-            <input type="text" id="temperament" value={temperament} onChange={(e) => setTemperament(e.target.value)} required />
+          <div className="entry">
+            <label className="labelName" htmlFor="temperament">Temperament:</label>
+            <input type="text" className="entryBox" value={temperament} onChange={(e) => setTemperament(e.target.value)} required />
           </div>
-          <div>
-            <label htmlFor="outdoor">Outdoor:</label>
-            <input type="checkbox" id="outdoor" checked={outdoor} onChange={(e) => setOutdoor(e.target.checked)} />
+          <div className="entry">
+            <label className="labelName" htmlFor="outdoor">Outdoor:</label>
+            <input type="checkbox" className="checkbox" checked={outdoor} onChange={(e) => setOutdoor(e.target.checked)} />
           </div>
-          <div>
-            <label htmlFor="adoptionFee">Adoption Fee:</label>
-            <input type="number" id="adoptionFee" value={adoptionFee} onChange={(e) => setAdoptionFee(Number(e.target.value))} required />
+          <div className="entry">
+            <label className="labelName" htmlFor="adoptionFee">Adoption Fee:</label>
+            <input type="number" className="entryBox" value={adoptionFee} onChange={(e) => setAdoptionFee(Number(e.target.value))} required />
           </div>
-          <div>
-            <label htmlFor="imageURL">Image URL:</label>
-            <input type="text" id="imageURL" value={imageURL} onChange={(e) => setImageURL(e.target.value)} required />
+          <div className="entry">
+            <label className="labelName" htmlFor="imageURL">Image URL:</label>
+            <input type="text" className="entryBox" value={imageURL} onChange={(e) => setImageURL(e.target.value)} required />
           </div>
-          <button type="submit">Create Cat</button>
+          <button className="button" type="submit">Create Cat</button>
      </form>
         ) : null}
-     
-
-
 
      {/* <button onClick={handleEditCat}>Edit Cat</button>
                       {showEdit ? (
@@ -315,71 +312,62 @@ const AdminCats = (props) => {
                     </form>
                         ) : null} */}
 
-
-
-
-
-        <button onClick={handleAllCatButtonClick}>Show All Cats</button>
+        <button className="button" onClick={handleAllCatButtonClick}>Show All Cats</button>
         {showAllCats ? (
           <div>
           <h2>All Cats</h2>
           <ul>
             {cats.map((cat) => (
               <li key={cat.id}>
-                <div>
-                  <p>{cat.name}</p>
+                <div id="nameAndImage">
+                  <img id="catImage" src={cat.imageURL} />
+                  <p id="catName">{cat.name}</p>
                 </div>
-                
-
+            
                 <div>
                   
                 {/* <button onClick={() => handleEdit(cat.id)}>Edit</button> */}
-                <button onClick={handleEditCat}>Edit Cat</button>
-
+                <button className="button" onClick={handleEditCat}>Edit Cat</button>
 
                       {showEdit ? (
                         <form onSubmit={updateCat}>
-                          <div>
-                            <label htmlFor="name">Name:</label>
-                            <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required />
+                          <div className="entry">
+                            <label className="labelName" htmlFor="name">Name:</label>
+                            <input type="text" className="entryBox" value={name} onChange={(e) => setName(e.target.value)} required />
                           </div>
-                          <div>
-                            <label htmlFor="breed">Breed:</label>
-                            <input type="text" id="breed" value={breed} onChange={(e) => setBreed(e.target.value)} required />
+                          <div className="entry">
+                            <label className="labelName" htmlFor="breed">Breed:</label>
+                            <input type="text" className="entryBox" value={breed} onChange={(e) => setBreed(e.target.value)} required />
                           </div>
-                          <div>
-                            <label htmlFor="age">Age:</label>
-                            <input type="number" id="age" value={age} onChange={(e) => setAge(Number(e.target.value))} required />
+                          <div className="entry">
+                            <label className="labelName" htmlFor="age">Age:</label>
+                            <input type="number" className="entryBox" value={age} onChange={(e) => setAge(Number(e.target.value))} required />
                           </div>
-                          <div>
-                            <label htmlFor="temperament">Temperament:</label>
-                            <input type="text" id="temperament" value={temperament} onChange={(e) => setTemperament(e.target.value)} required />
+                          <div className="entry">
+                            <label className="labelName" htmlFor="temperament">Temperament:</label>
+                            <input type="text" className="entryBox" value={temperament} onChange={(e) => setTemperament(e.target.value)} required />
                           </div>
-                          <div>
-                            <label htmlFor="outdoor">Outdoor:</label>
-                            <input type="checkbox" id="outdoor" checked={outdoor} onChange={(e) => setOutdoor(e.target.checked)} />
+                          <div className="entry">
+                            <label className="labelName" htmlFor="outdoor">Outdoor:</label>
+                            <input type="checkbox" className="checkbox" checked={outdoor} onChange={(e) => setOutdoor(e.target.checked)} />
                           </div>
-                          <div>
-                            <label htmlFor="adoptionFee">Adoption Fee:</label>
-                            <input type="number" id="adoptionFee" value={adoptionFee} onChange={(e) => setAdoptionFee(Number(e.target.value))} required />
+                          <div className="entry">
+                            <label className="labelName" htmlFor="adoptionFee">Adoption Fee:</label>
+                            <input type="number" className="entryBox" value={adoptionFee} onChange={(e) => setAdoptionFee(Number(e.target.value))} required />
                           </div>
-                          <div>
-                            <label htmlFor="imageURL">Image URL:</label>
-                            <input type="text" id="imageURL" value={imageURL} onChange={(e) => setImageURL(e.target.value)} required />
+                          <div className="entry">
+                            <label className="labelName" htmlFor="imageURL">Image URL:</label>
+                            <input type="text" className="entryBox" value={imageURL} onChange={(e) => setImageURL(e.target.value)} required />
                           </div>
-                          <button type="submit">Edit Cat</button>
+                          <button className="button" type="submit">Update Cat</button>
                     </form>
                         ) : null}
                       
                 </div>
 
-
-
-
-
                 {/* <button onClick={(event) => handleEdit(cat.id, event)}>Edit</button> */}
 
-                <button onClick={() => handleDelete(cat.id)}>Delete</button>
+                <button id="deleteButton" className="button" onClick={() => handleDelete(cat.id)}>Delete</button>
               </li>
             )
             
