@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {EditForm} from "./index"
 import "./AdminCats.css"
 
 const AdminCats = (props) => {
@@ -319,6 +320,7 @@ const AdminCats = (props) => {
           <ul>
             {cats.map((cat) => (
               <li key={cat.id}>
+                < EditForm />
                 <div id="nameAndImage">
                   <img id="catImage" src={cat.imageURL} />
                   <p id="catName">{cat.name}</p>
