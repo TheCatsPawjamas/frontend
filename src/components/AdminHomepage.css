@@ -1,0 +1,23 @@
+/* *{
+    border: 1px solid black;
+} */
+#mainAdminHomepage{
+    background-color: rgb(145, 129, 138);
+}
+#adminHomepage{
+    display: flex;
+    border: 1px solid black;
+
+}
+#adminUsers{
+
+    display: flex;
+    justify-content: center;
+    flex-flow: row;
+}
+#adminCats{
+
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
