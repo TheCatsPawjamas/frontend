@@ -12,6 +12,7 @@ const [outdoor, setOutdoor] = useState(false);
 const [adoptionFee, setAdoptionFee] = useState(0);
 const [imageURL, setImageURL] = useState("");
 const [showEdit, setShowEdit] = useState(false);
+// const [editedCat,setEditedCat] = useState(false);
 
 const handleEditCat = () => {
     // setUpdatedCat({});
@@ -40,7 +41,6 @@ const handleSave = async (event) => {
     })
 
     const updatedCat = await response.json();
-
     console.log(updatedCat)
     } catch (error) {
         console.log(error)
