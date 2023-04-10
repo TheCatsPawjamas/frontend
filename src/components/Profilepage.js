@@ -42,7 +42,7 @@ const Profilepage = (props) => {
             setUsername(result.username);
             setEmail(result.email);
         } catch (error) {
-            throw error;
+            console.log(error)
         }
     }
 
@@ -51,9 +51,13 @@ const Profilepage = (props) => {
     }
 
     const handleSaveClick = async () => {
-        setIsEditing(false);
+        // setIsEditing(false);
         const tokenKey = localStorage.getItem("token");
-        // console.log(currentUser.id);
+        if (!username && !newPassword && !email) {
+            alert("Can't leave any blank");
+            return;
+        }
+        
         try {
             const response = await fetch(`http://localhost:1337/api/users/${currentUser.id}`, {
                 method: 'PATCH',
@@ -68,19 +72,20 @@ const Profilepage = (props) => {
                 })
             });
             const result = await response.json();
-            // console.log(result)
-            if(result){
+
                 setIsEditing(false);
-            }
+
         } catch (error) {
             throw error;
         }
-    }
+    };
 
     const handleCancelClick = () => {
         setIsEditing(false);
+        if (isOpen) {
         toggleSettings();
-    }
+        }
+    };
 
     async function getPastPurchases(){
         const tokenKey = localStorage.getItem("token");
@@ -104,9 +109,6 @@ const Profilepage = (props) => {
             throw error;
         }
     }
-
-    // console.log("This is the profilepage's cart items: ");
-    // console.log(cartItems);
 
     return (
         <div className='profilePage'>
