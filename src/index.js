@@ -178,6 +178,7 @@ const App = () => {
        // let updatedItems = [];
        console.log(item);
         deleteCatFromCart(item);
+        setTotalPrice(Number(totalPrice) - Number(item.adoptionFee));
         // if (existingItem.quantity === 1) {
 
         //   updatedItems = cartItems.filter((cartItem) => cartItem.id !== item.id);
