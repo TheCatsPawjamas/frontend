@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Navbar, Homepage, Login, SingleProduct, Cats, Registration, Cart, PaymentInfo, Profilepage, PurchaseComplete, AdminCats, AdminUsers, AdminHomepage } from "./components";
+import { Navbar, Homepage, Login, SingleProduct, Cats, Registration, Cart, PaymentInfo, Profilepage, PurchaseComplete, AdminCats, AdminUsers, AdminHomepage, EditForm } from "./components";
 
 const App = () => { 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
