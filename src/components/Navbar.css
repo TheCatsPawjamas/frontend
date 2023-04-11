@@ -3,6 +3,7 @@
     display: flex;
     border: 2px solid rgb(0, 0, 0);
     /* background-color: rgb(214, 164, 245); */
+    background-color: rgb(145, 129, 138);
     justify-content: flex-end;
     align-items: center;
     padding: 1rem;
@@ -11,22 +12,32 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid blue;
+    border: 1px solid #333;
     width: 50%;    
     /* background-color: #f5ebeb; */
     background-color: rgb(235, 220, 203);
 }
+
 #homeNavbar,
 #allCatsNavbar,
 #logoutNavbar,
 #loginNavbar
 {
-    color:blue;
+    color: #333;
     text-decoration: none;
     margin-left: 1rem;
     background-color: rgb(235, 220, 203);
 
 }
+
+#homeNavbar:hover,
+#allCatsNavbar:hover,
+#logoutNavbar:hover,
+#loginNavbar:hover
+{
+    text-decoration: underline;
+}
+
 #cartImgNavbar{
     display: flex;
     justify-content: center;

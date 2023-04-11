@@ -75,12 +75,17 @@ body{
   #catHomepage {
     display: flex;
     justify-content: center;
+    border:rgb(145, 129, 138) solid 30px;
+    border-radius: 5%;
+    /* padding:  */
+    /* border-radius: 25%; */
   }
   
   #catMeme {
     width: 100%;
     max-width: 500px;
-    border-radius: 2%;
+    /* border-radius: 2%; */
+    /* padding: 10px; */
   }
   
   .homeContent {
@@ -99,21 +104,23 @@ body{
   #registerHyperlink {
     flex-wrap: wrap;
     text-decoration: none;
-    color: #333;
+    color: #fff;
     padding: 0.5rem;
     border: 2px solid #333;
     margin-bottom: 2rem;
     margin-top: 1rem;
     border-radius: 5px;
     /* background-color: rgb(178,163,181); */
-    background-color: rgb(235, 220, 203);
+    /* background-color: rgb(235, 220, 203); */
+    background-color: rgb(152, 122, 139);
     margin-left: 2%;
     margin-right: 2%;
   }
   
   #loginHyperlink:hover,
   #registerHyperlink:hover {
-    background-color: rgb(152, 122, 139);
-    color: #fff;
+    /* background-color: rgb(152, 122, 139); */
+    background-color: rgb(235, 220, 203);
+    color: #333;
   }
   

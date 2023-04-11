@@ -46,16 +46,16 @@ const SingleProducts = (props) => {
             <div>
             {
                 <div id="individualCatPage">
-                    
-                    <p id="name">{products.name}</p>
-                    <p className="catInfo">Breed: {products.breed}</p>
-                    <img id="image"src={products.imageURL}/>
-                    <p className="catInfo">Age: {products.age}</p>
-                    <p className="catInfo">Temperament: {products.temperament}</p>
-                    <p className="catInfo">{products.outdoor? <p>Outdoor Cat</p>: <p>Indoor Cat</p>}</p>
-                    <p className="catInfo">Adoption Fee: ${products.adoptionFee}</p>
-                    <Link id="cartLink" to="/cart" onClick={() => handleAddToCart(products)}>Add to Cart</Link>
-                    
+                    <div className="allCatInfo">
+                        <p id="name">{products.name}</p>
+                        <p className="catInfo">Breed: {products.breed}</p>
+                        <img id="image"src={products.imageURL}/>
+                        <p className="catInfo">Age: {products.age}</p>
+                        <p className="catInfo">Temperament: {products.temperament}</p>
+                        <p className="catInfo">{products.outdoor? <p>Outdoor Cat</p>: <p>Indoor Cat</p>}</p>
+                        <p className="catInfo">Adoption Fee: ${products.adoptionFee}</p>
+                        <Link id="cartLinkSingleCat" to="/cart" onClick={() => handleAddToCart(products)}>Add to Cart</Link>
+                    </div>
                 </div>    
             }
             </div>
