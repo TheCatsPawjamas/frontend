@@ -70,7 +70,7 @@ const pageCount = Math.ceil(cats.length / PER_PAGE);
 return (
   <div>
     <h1 id="catHeader">Adoptable Cats</h1>
-    <input className="searchbar" type="text" onChange={handleSearchChange} />
+    {/* <input className="searchbar" type="text" onChange={handleSearchChange} /> */}
     {currentPageData}
 
     <ReactPaginate

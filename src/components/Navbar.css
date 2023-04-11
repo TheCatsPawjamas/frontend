@@ -1,6 +1,8 @@
+
 #mainHeaderNavbar{
     display: flex;
-    border: 1px solid black;
+    border: 2px solid rgb(0, 0, 0);
+    /* background-color: rgb(214, 164, 245); */
     justify-content: flex-end;
     align-items: center;
     padding: 1rem;
@@ -11,7 +13,8 @@
     align-items: center;
     border: 1px solid blue;
     width: 50%;    
-    background-color: #f5ebeb;
+    /* background-color: #f5ebeb; */
+    background-color: rgb(235, 220, 203);
 }
 #homeNavbar,
 #allCatsNavbar,
@@ -21,6 +24,7 @@
     color:blue;
     text-decoration: none;
     margin-left: 1rem;
+    background-color: rgb(235, 220, 203);
 
 }
 #cartImgNavbar{
@@ -41,4 +45,13 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
+}
+#catLogo{
+    display: flex;
+    float: left;
+    /* justify-content: left; */
+    /* align-items: flex-start; */
+    margin-right: auto;
+    width: 10%;
+    height: 10%;
 }
