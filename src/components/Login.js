@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import paws from "../images/catPawsImg.jpg"
 
 import "./Login.css"
-// local host user: http://localhost:1337/api 
+
 
 const Login = (props) => {
     const navigate = useNavigate();
@@ -25,9 +25,9 @@ const Login = (props) => {
                 password: password
               })
             });
-            console.log("login is working")
+           
             const result = await response.json();
-            console.log(result)
+            
             if (!result.token) {
                 alert("username or password is incorrect, please try again")
             } else {

@@ -39,11 +39,9 @@ const updateUserForm = () => {
                 }
             })
 
-            // setUsers(...updatedListOfUsers + updatedUserResponse)
 
             setUsers([...updatedListOfUsers, updatedUserResponse])
 
-            console.log(updatedUserResponse)
             setUpdatedUser(updatedUserResponse)
         } catch (error) {
             console.log( error)

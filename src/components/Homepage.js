@@ -22,7 +22,7 @@ const Homepage= (props) => {
                 <div className='homeContent'>
                     <h1 className='homeContent'>Welcome to The Cats Pawjamas! Feel free to look at all the Purrrfect Kitties and login/register when you're ready to grab one out of our paws!</h1>               
                     <Link id="loginHyperlink" to='/login'> Login to an existing acount </Link>
-                    {/* <br/> */}
+                    
                     <Link id='registerHyperlink' to='/register'> Register for a new account </Link>
                 </div>
             </div>

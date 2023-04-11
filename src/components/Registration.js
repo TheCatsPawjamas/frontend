@@ -21,7 +21,7 @@ const Registration = (props) => {
                 alert ("Password does not meet requirements, please try again")
                 return;
             }
-            console.log("About to fetch request");
+            
             const response = await fetch (`http://localhost:1337/api/users/register`, {
                 method: "POST", 
                 headers: {
@@ -38,7 +38,7 @@ const Registration = (props) => {
         
             const resultData = await response.json(); 
 
-            console.log(resultData)
+            
 
             if (!resultData.token) {
                 alert("Unable to create account, please try again!")
