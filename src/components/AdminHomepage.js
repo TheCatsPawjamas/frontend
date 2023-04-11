@@ -10,11 +10,11 @@ const AdminHomepage = (props) => {
             {
                 isAdmin ? 
                         <div id="adminHomepage">
-                            <div id="adminUsers">
-                                <Link to="/adminusers">Click here to delete/edit a User</Link>
+                            <div className="button" id="adminUsers">
+                                <Link className="linkTag" to="/adminusers">Click here to delete/edit a User</Link>
                             </div>
-                            <div id="adminCats">
-                                <Link to="/admincats">Click here to add/delete/edit a Cat</Link>
+                            <div className="button" id="adminCats">
+                                <Link className="linkTag" to="/admincats">Click here to add/delete/edit a Cat</Link>
                             </div>
                         </div>
                         : <div>You don't have admin status</div>      
