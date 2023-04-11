@@ -11,7 +11,6 @@ const App = () => {
     const [orderId, setOrderId] = useState();
     const [isAdmin, setIsAdmin] = useState(null);
     const [totalPrice, setTotalPrice] = useState([]);
-    // const db = require('./db');
 
     useEffect(()=>{
       if(localStorage.getItem('token')){
@@ -59,22 +58,14 @@ const App = () => {
       }
   }
 
-  // useEffect(()=>{
-  //     fetchCurrentUser();
-      
-  // },[])
-
-  //ask violet about this useEffect and the one above
   useEffect(()=>{
     fetchCurrentUser();
-    console.log(orderId);
     if(localStorage.getItem('token') && orderId> 0){
-      console.log("Hitting the fetched cart async function");
       fetchCart();
     }
   },[orderId,isLoggedIn]);
 
-  async function fetchCart(){     //new fetch call
+  async function fetchCart(){    
       try {
         const response = await fetch(`http://localhost:1337/api/orders/${orderId}`, {
                 headers: {
@@ -84,10 +75,7 @@ const App = () => {
               });
     
             const data = await response.json();
-    
-            // console.log("our cats: ");
-            // console.log(data);
-            // console.log(data.cats);
+
             setCartItems(data.cats);
     } catch (error) {
         console.log(error)
@@ -111,7 +99,6 @@ const App = () => {
         })
       })
       const data = await response.json();
-      console.log(data);
 
       setCartItems([...cartItems, data]);
 
@@ -123,10 +110,6 @@ const App = () => {
 
   async function deleteCatFromCart(item) {
     try {
-      console.log(item);
-      console.log(item.catId);
-      console.log(orderId);
-        // const response = await fetch(`${process.env.DATABASE_URL}/api/routines/${event.target.value}`,
         const response = await fetch(`http://localhost:1337/api/purchases/${item.catId}/${orderId}`,
         {
             method: "DELETE",
@@ -136,18 +119,17 @@ const App = () => {
             }
         })
         const translatedResponse = await response.json();
-        console.log(translatedResponse)
+      
         if (translatedResponse.success) {
             let filteredCartItems = cartItems.filter((singleCat) => {
                 if (singleCat.catId != translatedResponse.destroyPurchase.catId) {
                     return singleCat
                 }
             })
-            console.log("This is my filtered cart items after deleting: ");
-            console.log(filteredCartItems);
+
             setCartItems(filteredCartItems);
 
-            // myRoutines = filteredMyRoutines
+            
         }
     
     } catch (error) {
@@ -158,44 +140,20 @@ const App = () => {
 
     const addItemToCart = (item) => {
         const index = cartItems.findIndex((cartItem) => cartItem.id === item.id);
-      //fetch request
-      // fetchCart();
-          
-       //added this into the addItemsToCart function
+
         if (index === -1) {
           addCatToCart(item)
           setTotalPrice(Number(totalPrice) + Number(item.adoptionFee));   
-          // setCartItems([...cartItems, { ...item, quantity: 1 }]);
+         
         } 
-        // else {
-        //   const updatedCartItems = [...cartItems];
-        //   updatedCartItems[index].quantity++;
-        //   setCartItems(updatedCartItems);
-        // }
+
       };
 
     const removeItemFromCart = (item) => {
-       // let updatedItems = [];
-       console.log(item);
         deleteCatFromCart(item);
         setTotalPrice(Number(totalPrice) - Number(item.adoptionFee));
-        // if (existingItem.quantity === 1) {
-
-        //   updatedItems = cartItems.filter((cartItem) => cartItem.id !== item.id);
-        // } 
-        // else {
-        //   const updatedItem = { ...existingItem, quantity: existingItem.quantity - 1 };
-        //   updatedItems = [...cartItems];
-        //   updatedItems[existingItemIndex] = updatedItem;
-        // }
-      
-        // setCartItems(updatedItems);
       };      
 
-    // console.log(userId);
-    console.log(currentUser);
-    console.log(cartItems);
-    console.log(isAdmin);
     return ( 
         <BrowserRouter>
             <div> 
