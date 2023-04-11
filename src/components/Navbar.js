@@ -3,6 +3,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import cart from "../images/Screenshot 2023-03-31 at 6.08.31 PM Small.png";
 import './Navbar.css';
+import catLogo from "../images/CatLogo.png"
 
 
 const Navbar = (props) => {
@@ -26,8 +27,9 @@ const Navbar = (props) => {
     
     return(
         <header id="mainHeaderNavbar">
-          
-                    <div id="headerNavbar">  
+                <img src={catLogo} id='catLogo'/>
+                    <div id="headerNavbar"> 
+                        
 
                         <Link to='/' id="homeNavbar"> Home </Link>
                         <Link to='/cats' id="allCatsNavbar"> The Cats </Link> 
