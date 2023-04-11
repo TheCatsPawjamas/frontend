@@ -18,7 +18,7 @@ const SingleProducts = (props) => {
             }
         });
         const result = await response.json();
-        console.log(result);
+        
         setProducts(result);
         } catch (error) {
             throw error;
@@ -46,7 +46,7 @@ const SingleProducts = (props) => {
             <div>
             {
                 <div id="individualCatPage">
-                    {/* <p id="name">Name: {products.name}</p> */}
+                    
                     <p id="name">{products.name}</p>
                     <p className="catInfo">Breed: {products.breed}</p>
                     <img id="image"src={products.imageURL}/>

@@ -6,60 +6,9 @@ const Cart = (props) => {
 
   const { cartItems, addItemToCart, removeItemFromCart, isLoggedIn, setIsLoggedIn, totalPrice, setTotalPrice } = props;
 
-
-  // const [items, setItems] = useState(
-  //   cartItems ? cartItems.map((item) => ({ ...item, initialPrice: item.price})): []
-  // );
-
-
   const [pajamasCount, setPajamasCount] = useState(0);
 
 
- 
-    
-  //   cartItems.reduce(
-  //   (accumulator, current) => accumulator + current.adoptionFee,
-  //   0
-  // ));
-
-
-
-
-  // useEffect(() => {
-  //   setPajamasCount(0);
-  // }, [cartItems]);
-
-
-  // useEffect(() => {
-  //   setTotalPrice(cartItems.reduce((accumulator, current) => accumulator + current.adoptionFee, 0) + (pajamasCount * 25));
-  // }, [cartItems, pajamasCount]);
-
-
-  // const handleQuantityChange = (item, quantity) => {
-  //   const updatedItems = items.map((i) => {
-  //     if (i.id === item.id) {
-  //       return { ...i, quantity, initialPrice: i.price * quantity };
-  //     }
-  //     return i;
-  //   });
-  //   setItems(updatedItems);
-  // };
-
-
-  const handleAddToCart = (item) => {
-    // const updatedItem = {
-    //   ...item,
-    //   quantity: item.quantity + 1,
-    //   updatedPrice: (item.updatedPrice || item.price) + item.price,
-    // };
-    // addItemToCart(updatedItem);
-    // setTotalPrice(...totalPrice );
-    // setTotalPrice(totalP)
-  };
-
-  // useEffect(()=>{
-
-  // },[cartItems])
 
   const handleAddPajamas = () => {
     setTotalPrice(Number(totalPrice) + 25);
@@ -89,23 +38,12 @@ const Cart = (props) => {
                     <div className="cartItemQuantity">
                       <button
                         onClick={() => {
-                          // const newQuantity = item.quantity > 1 ? item.quantity - 1 : 1;
-                          // handleQuantityChange(item, newQuantity);
+                       
                           removeItemFromCart(item);
                         }}
                       >
                         -
                       </button>
-                      {/* <p>{item.quantity}</p>
-                      <button
-                        onClick={() => {
-                          // const newQuantity = item.quantity + 1;
-                          // handleQuantityChange(item, newQuantity);
-                          addItemToCart(item);
-                        }}
-                      >
-                        +
-                      </button> */}
                     </div>
                   </div>
                 </div>
@@ -130,9 +68,6 @@ const Cart = (props) => {
 
     </div>
     }
-
-      
-      
 
     </div>
   );
