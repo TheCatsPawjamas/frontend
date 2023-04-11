@@ -3,7 +3,7 @@ import React, { useState } from "react"
 const EditForm = (props) => {
 
 const [cat, setCat] = useState(props.cat);
-const [updatedCat, setUpdatedCat] = useState({});
+// const [updatedCat, setUpdatedCat] = useState({});
 const [name, setName] = useState("");
 const [breed, setBreed] = useState("");
 const [age, setAge] = useState(0);
@@ -12,10 +12,9 @@ const [outdoor, setOutdoor] = useState(false);
 const [adoptionFee, setAdoptionFee] = useState(0);
 const [imageURL, setImageURL] = useState("");
 const [showEdit, setShowEdit] = useState(false);
-// const [editedCat,setEditedCat] = useState(false);
+
 
 const handleEditCat = () => {
-    // setUpdatedCat({});
     setCat(props.cat);
     setShowEdit(!showEdit);
 };
@@ -41,7 +40,8 @@ const handleSave = async (event) => {
     })
 
     const updatedCat = await response.json();
-    console.log(updatedCat)
+    setShowEdit(false);
+
     } catch (error) {
         console.log(error)
     }
@@ -95,6 +95,7 @@ const handleSave = async (event) => {
 
           </form>
         ) : null}
+
       </div>
         
     </div>
