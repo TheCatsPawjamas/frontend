@@ -3,7 +3,6 @@ import React, { useState } from "react"
 const EditForm = (props) => {
 
 const [cat, setCat] = useState(props.cat);
-// const [updatedCat, setUpdatedCat] = useState({});
 const [name, setName] = useState("");
 const [breed, setBreed] = useState("");
 const [age, setAge] = useState(0);
