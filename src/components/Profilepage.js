@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-
+import "./Profilepage.css";
 
 
 const Profilepage = (props) => {
-    const {currentUser, cartItems, isOpen} = props;
+    const {currentUser, cartItems, isOpen, userId, setCurrentUser, setIsAdmin, setUserId} = props;
     const [openEditForm, setOpenEditForm] = useState(false);
     const [ username, setUsername ] = useState("");
     const [ newPassword, setNewPassword ] = useState("");
@@ -16,13 +16,13 @@ const Profilepage = (props) => {
         if (localStorage.getItem("token")) {
             props.setIsLoggedIn(true);
             fetchUserData();
-            getPastPurchases();
         } else {
             props.setIsLoggedIn(false);
         }
     }, []);
 
     const fetchUserData = async () => {
+       
         const tokenKey = localStorage.getItem("token");
         try {
             const response = await fetch('http://localhost:1337/api/users/me', {
@@ -31,14 +31,48 @@ const Profilepage = (props) => {
                     'Authorization': `Bearer ${tokenKey}`
                 },
             });
+           
             const result = await response.json();
-            setUsername(result.username);
-            setEmail(result.email);
+            setCurrentUser(result);
+            setUserId(result.id);
+            setIsAdmin(result.admin);
+            setUsername(undefined);
+            setEmail(undefined);
         } catch (error) {
             console.log(error)
         }
     }
 
+    useEffect(()=>{
+        if(Object.keys(currentUser).length){
+            getPastPurchases();
+        }else{
+            console.log("current user is empty");
+        }
+    },[currentUser])
+
+    async function getPastPurchases(){
+        const tokenKey = localStorage.getItem("token");
+        try {
+            const response = await fetch(`http://localhost:1337/api/orders/finishedOrder/${currentUser.id}`,{
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${tokenKey}`
+                },
+            })
+
+            const result = await response.json();
+            
+            if(result){
+                setPastPurchases(result);
+                
+            }
+            
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
     const handleEditClick = () => {
         setIsEditing(true);
     }
@@ -84,45 +118,25 @@ const Profilepage = (props) => {
         setOpenEditForm(!openEditForm);
     }
 
-    async function getPastPurchases(){
-        const tokenKey = localStorage.getItem("token");
-        try {
-            const response = await fetch(`http://localhost:1337/api/orders/finishedOrder/${currentUser.id}`,{
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${tokenKey}`
-                },
-            })
-
-            const result = await response.json();
-            
-            if(result){
-                setPastPurchases(result);
-                
-            }
-            
-        } catch (error) {
-            console.log(error);
-            throw error;
-        }
-    }
+    
    function handleShowPurchases(){
     setShowPastPurchases(!showPastPurchases);
     }
+
 
     return (
         <div className='profilePage'>
             
             
-                <button className="button" onClick={openEdit}>Edit Profile</button>
+                <button id="profileEditButton" onClick={openEdit}>Edit Profile</button>
                 {!openEditForm? null: (
                 <div className='profileUpdateContent'>
-                    <label>Username:</label>
-                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-                    <label>New Password:</label>
-                    <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
-                    <label>Email:</label>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <label className='editLabel'>Username:</label>
+                    <input className='editInput' type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <label className='editLabel'>New Password:</label>
+                    <input className='editInput' type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
+                    <label className='editLabel'>Email:</label>
+                    <input className='editInput' type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                     <br></br>
                     <button className="profileSettingButton" onClick={handleSaveClick}>Save</button>
                     <button className="profileSettingButton" onClick={openEdit}>Cancel</button>
@@ -133,10 +147,10 @@ const Profilepage = (props) => {
                 <h2 className='profileOrdersHeader'>Your Cart</h2>
                 {cartItems && cartItems.length > 0 ? (
                     cartItems.map((item) => (
-                        <div key={item.id}>
-                            <p className='profileOrderText'>Adopted Kitty: {item.name}</p>
-                            <p className='profileOrderText'>Prrrice: ${item.adoptionFee}</p>
-                            <p className='profileOrderText'><img src={item.imageURL}/></p>
+                        <div className='pastPurchaseOrder' key={item.id}>
+                            <p className='profilePurchaseText'>Adopted Kitty: {item.name}</p>
+                            <p className='profilePurchaseText'>Prrrice: ${item.adoptionFee}</p>
+                            <p><img className='pastPurchaseImg' src={item.imageURL}/></p>
                     </div>
                 ))
             ) : (
@@ -144,26 +158,28 @@ const Profilepage = (props) => {
             )}
             </div>
             <div className='completedPurchases'>
-                <button className="button"onClick={handleShowPurchases}>See All Past Purchases</button>
+                <button id="profilePurchaseButton"onClick={handleShowPurchases}>See All Past Purchases</button>
                 {!showPastPurchases? (null): 
                     <div>
                         <h2 className='completedPurchasesHeader'>Past Purchases</h2>
                             {pastPurchases && pastPurchases.length > 0 ? (
                                 pastPurchases.map((item, index) => (
-                                    <div key={index+1}>
-                                        <p>Order #: {index+1}</p>
-                                        <p>The Cats:</p>
+                                    <div className='pastPurchaseOrder' key={index+1}>
+                                        <h2>Order #: {index+1}</h2>
+                                        {/* <h3>The Cats:</h3> */}
                                         {
                                         item.cats.length ?   item.cats.map((individualCat)=>{
                                                 return(
                                                 <div key={individualCat.id}>
                                                     <p className='profilePurchaseText'>Adopted Kitty: {individualCat.name}</p>
                                                     <p className='profilePurchaseText'>Prrrice: ${individualCat.adoptionFee}</p>
-                                                    <p className='profilePurchaseText'><img src={individualCat.imageURL}/></p>
+                                                    <p><img className='pastPurchaseImg' src={individualCat.imageURL}/></p>
+                                                    
                                                 </div>
                                                 )
                                             }) : <div>no Cats in that order</div>
                                         }
+                                        <br/>
                                     </div>
                                 ))
                             ) : (
