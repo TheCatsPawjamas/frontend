@@ -149,7 +149,7 @@ const AdminCats = (props) => {
                   <p id="catName">{cat.name}</p>
                 </div>
                 < EditForm cat={cat}/>
-                <button id="deleteButton" className="button" onClick={() => handleDelete(cat.id)}>Delete</button>
+                <button className="button" onClick={() => handleDelete(cat.id)}>Delete</button>
               </li>
             ))}
           </ul>
