@@ -1,5 +1,5 @@
 import {useState} from "react"
-import "./AdminUsers.css"
+import "./AdminUpdateUsers.css"
 const AdminUpdateUsers = (props) => {
     const { isAdmin, setIsAdmin, user, users, setUsers } = props
     const [ updateForm, setUpdateForm ] = useState (false)
@@ -74,7 +74,7 @@ const updateUserForm = () => {
                         onChange = {(event) => setEmail(event.target.value)}
                     />
                 </label>
-                <button type="submit" > Update User </button>
+                <button className="updateUserButton" type="submit" > Update User </button>
 
             </form>
         ): null }

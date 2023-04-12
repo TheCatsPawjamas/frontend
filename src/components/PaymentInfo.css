@@ -16,31 +16,48 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    width: 400px;
+    /* width: 400px; */
+    border: solid black;
+    box-shadow: 10px 10px 10px 10px rgb(145, 129, 138);
 }
 
 .paymentBox {
     margin: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    width: 450px;
+    box-shadow: 5px 5px 5px 5px rgb(178, 163, 181);
+    border-radius: 6px;
 }
 
 #expirationDate {
     display: flex;
-    /* width: 60px; */
 }
 
 #cvc {
     display: flex;
-    /* align-items: center; */
-    /* width: 50px; */
 }
 
-#paymentButton {
+#reviewButton {
+    background-color: rgb(145, 129, 138);
+    border-radius: 8px;
+    font-size: 16px;
     margin: 10px auto;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 200px;
 }
+
+#reviewButton:hover {
+    background-color: rgb(145, 129, 138);
+    color: #fff;
+}
+
+
 
 label {
     display: flex;

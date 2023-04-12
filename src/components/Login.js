@@ -53,7 +53,7 @@ const Login = (props) => {
                 onChange={(event) => setUsername(event.target.value)}
             />
             <input className="loginBox"
-                type="text"
+                type="password"
                 placeholder="Password"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
