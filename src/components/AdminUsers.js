@@ -67,7 +67,7 @@ const AdminUsers = (props) => {
                 <li id="listOfUsers" key={user.id}>
                     {user.username}
                     <button id="deleteButton" onClick={(event) => deleteUser(event, user.id)}> Delete </button>
-                    <AdminUpdateUsers user={user} setUsers={setUsers} users={users}/>
+                    <AdminUpdateUsers className="updateUserButton" user={user} setUsers={setUsers} users={users}/>
                 </li>
                 ))
             }
