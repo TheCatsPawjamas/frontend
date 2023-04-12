@@ -8,32 +8,113 @@
 
 .profileUpdateContent {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    margin: 10px;
+    border-radius: 8%;
+    background-color: rgb(145, 129, 138);
+    margin-left: 25%;
+    margin-right: 25%;
 }
+.editInput{
+    display: flex;
+    /* width: 30%; */
+    
+    font-size: 1.5rem;
+    margin-right: 20%;
+    margin-left: 20%;
+    margin-bottom: 20px;
+  }
 
-/* .profileSettingButton {
+  .editLabel{
+    font-size: 1.5rem;
+    margin-left: 10px;
+  }
+
+  .profileSettingButton{
     display: flex;
     margin: 10px;
     font-size: 1.5rem; 
-    height: 50%;
-    width: 50%;
+    height: 20%;
+    width: 35%;
     border: none; 
     background-color: rgb(178,163,181);
-    color: white; 
+    color: #333;
     border-radius: 25px; 
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25); 
     cursor: pointer; 
     justify-content: space-evenly;
     align-content: space-evenly;
     flex-direction: row;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
+  }
+  .profileSettingButton:hover{
+    background-color: rgb(235, 220, 203);
     color: #333;
-    font-size: xx-large;
-    text-decoration: none;
-} */
+  }
 
+#profileEditButton,
+#profilePurchaseButton
+{
+  display: flex;
+  margin: 10px;
+  font-size: 1.5rem; 
+  height: 20%;
+  width: 35%;
+  border: none; 
+  background-color: rgb(178,163,181);
+  color: white; 
+  border-radius: 25px; 
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25); 
+  cursor: pointer; 
+  justify-content: space-evenly;
+  align-content: space-evenly;
+  flex-direction: row;
+}
 
+#profileEditButton:hover,
+#profilePurchaseButton:hover{
+  background-color: rgb(145, 129, 138);
+  
+
+}
+.pastPurchaseOrder{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    border: 10px solid rgb(178,163,181);
+    margin: 10px;
+    border-radius: 5%;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: rgb(178,163,181);
+    
+}
+.pastPurchaseImg{
+    
+    width: 200px;
+    height: 200px;
+    
+}
+.completedPurchasesHeader{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.profileOrdersHeader{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.profilePurchaseText{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.15rem;
+}
+/* 
 .profileOrders {
     display: flex;
 }
@@ -57,4 +138,4 @@
 
 .profilePurchaseText {
     display: flex;
-}
+} */

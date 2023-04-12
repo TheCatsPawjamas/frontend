@@ -19,7 +19,7 @@ const App = () => {
         setIsLoggedIn(false);
 
       }
-    });
+    },[]);
                                         
     async function fetchCurrentUser(){
       if (localStorage.token){
@@ -165,7 +165,7 @@ const App = () => {
                     <Route path='/cats' element={<Cats addItemToCart={addItemToCart} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
                     <Route path='/cats/:id' element={<SingleProduct addItemToCart={addItemToCart} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
                     <Route path='/cart' element={<Cart cartItems={cartItems} addItemToCart={addItemToCart} removeItemFromCart={removeItemFromCart} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} totalPrice={totalPrice} setTotalPrice={setTotalPrice}/>} />
-                    <Route path='/profile' element={<Profilepage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} cartItems={cartItems}/>}/>
+                    <Route path='/profile' element={<Profilepage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} cartItems={cartItems} userId={userId} setCurrentUser={setCurrentUser} setUserId={setUserId} setIsAdmin={setIsAdmin}/>}/>
                     <Route path='/checkout' element={<PaymentInfo isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} orderId={orderId} totalPrice={totalPrice} setTotalPrice={setTotalPrice}/>} />
                     <Route path='/purchasecomplete' element={<PurchaseComplete isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} cartItems={cartItems} orderId={orderId} totalPrice={totalPrice} setTotalPrice={setTotalPrice}/>}/>
                     <Route path='/admincats' element={<AdminCats isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} currentUser={currentUser}/>} />
