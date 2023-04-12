@@ -63,7 +63,6 @@ const AdminCats = (props) => {
       });
       const newCat = await response.json();
       if (Object.keys(newCat).length) {
-        // setCats([...cats, newCat]);
         setName("");
         setBreed("");
         setAge(0);
