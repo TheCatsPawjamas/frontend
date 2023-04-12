@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import "./cats.css"
 import ReactPaginate from 'react-paginate'; 
 
-const PER_PAGE = 4
+const productOnPage = 4
 const BASE_URL = `http://localhost:1337/api`;
 
 const Cats = (props) => {
@@ -38,14 +38,14 @@ const handleAddToCart = (cat) => {
 });
 };
 
-function handlePageOnClick({ selected: selectedPage }) {
+function clickOnPage ({ selected: selectedPage }) {
   setCurrentPage(selectedPage);
 }
 
-const offset = currentPage * PER_PAGE;
+const offset = currentPage * productOnPage;
 
 const currentPageData = cats
-  .slice(offset, offset + PER_PAGE)
+  .slice(offset, offset + productOnPage)
   .map((cat) => (
     <div key={cat.id}>
       <div id="catProfile">
@@ -65,24 +65,24 @@ const currentPageData = cats
     </div>
 ));
 
-const pageCount = Math.ceil(cats.length / PER_PAGE);
+const pageCount = Math.ceil(cats.length / productOnPage);
 
 return (
-  <div>
+  <div id="mainCatSection">
     <h1 id="catHeader">Adoptable Cats</h1>
     {/* <input className="searchbar" type="text" onChange={handleSearchChange} /> */}
     {currentPageData}
 
-    <ReactPaginate
+    <ReactPaginate id="pagination"
       previousLabel={"Previous"}
       nextLabel={"Next"}
       pageCount={pageCount}
-      onPageChange={handlePageOnClick}
-      containerClassName={"pagination"}
-      previousLinkClassName={"paginationLink"}
-      nextLinkClassName={"paginationLink"}
-      disabledClassName={"disabledPaginationLink"}
-      activeClassName={"activePaginationLink"}
+      onPageChange={clickOnPage}
+      containerClassName={"pagination-container"}
+      previousLinkClassName={"previous-page"}
+      nextLinkClassName={"next-page"}
+      disabledClassName={"disabled-item"}
+      activeClassName={"active-page"}
     />
     {cats.length === 0 && <div> No Cats Found </div>}
   </div>

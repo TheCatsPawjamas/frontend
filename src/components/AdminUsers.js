@@ -56,17 +56,17 @@ const AdminUsers = (props) => {
 
 
     return (
-      <section> 
+      <section id="adminUsersSection"> 
 
 
-        <button onClick={getAllUsers}> Show All Users </button>
-        <h3> All Users </h3>
+        <button id="allUserButton" onClick={getAllUsers}> Show All Users </button>
+        <h3 id="userHeader"> All Users </h3>
         <ul>
             {
                 users.map((user) => (
-                <li key={user.id}>
+                <li id="listOfUsers" key={user.id}>
                     {user.username}
-                    <button onClick={(event) => deleteUser(event, user.id)}> Delete </button>
+                    <button id="deleteButton" onClick={(event) => deleteUser(event, user.id)}> Delete </button>
                     <AdminUpdateUsers user={user} setUsers={setUsers} users={users}/>
                 </li>
                 ))

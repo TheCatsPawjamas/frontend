@@ -1,5 +1,5 @@
 import {useState} from "react"
-// 
+import "./AdminUsers.css"
 const AdminUpdateUsers = (props) => {
     const { isAdmin, setIsAdmin, user, users, setUsers } = props
     const [ updateForm, setUpdateForm ] = useState (false)
@@ -49,14 +49,14 @@ const updateUserForm = () => {
     }
 
     return (
-        <section> 
+        <section id="updateUserSection"> 
             <button onClick={updateUserForm}> Update User </button>
 
             {updateForm ? (
             <form id="updateUserForm" onSubmit={updateUser}>
                 
-                <h3> Update User</h3>
-                <label> 
+                <h3 id="upadateHeader"> Update User</h3>
+                <label className="usersLabel"> 
                     Username: 
                     <input
                     type="text"
@@ -65,7 +65,7 @@ const updateUserForm = () => {
                     onChange = {(event) => setName(event.target.value)}
                     />
                 </label>
-                <label>
+                <label className="usersLabel">
                     Email: 
                     <input
                         type="text"
