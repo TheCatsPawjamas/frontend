@@ -5,7 +5,7 @@ const Settings = (props) => {
     const toggleSettings = () => setIsOpen(!isOpen);
     return (
         <div>
-            {props.children && <button onClick={toggleSettings}>{props.children[0]}</button>}
+            {props.children && <button className='button' onClick={toggleSettings}>{props.children[0]}</button>}
             {isOpen && props.children && <div>{props.children[1]}</div>}
         </div>
     );
@@ -19,6 +19,7 @@ const Profilepage = (props) => {
     const [ email, setEmail ] = useState("");
     const [isEditing, setIsEditing] = useState(false);
     const [pastPurchases,setPastPurchases] = useState([]);
+    const [showPastPurchases, setShowPastPurchases] = useState(false);
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
@@ -114,11 +115,16 @@ const Profilepage = (props) => {
             throw error;
         }
     }
+   function handleShowPurchases(){
+    setShowPastPurchases(!showPastPurchases);
+    }
 
     return (
         <div className='profilePage'>
-            <Settings className='profileSettingsComp'>
-                <button className="profileSettingButton" onClick={openEdit}>Edit Profile</button>
+            
+            {/* <Settings className='profileSettingsComp'> */}
+                <button className="button" onClick={openEdit}>Edit Profile</button>
+                {!openEditForm? null: (
                 <div className='profileUpdateContent'>
                     <label>Username:</label>
                     <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
@@ -126,10 +132,12 @@ const Profilepage = (props) => {
                     <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
                     <label>Email:</label>
                     <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <br></br>
                     <button className="profileSettingButton" onClick={handleSaveClick}>Save</button>
                     <button className="profileSettingButton" onClick={() => {handleCancelClick(); toggleSettings();}}>Cancel</button>
                 </div>
-            </Settings>
+                )}
+            {/* </Settings> */}
             <div className='profileOrders'>
                 <h2 className='profileOrdersHeader'>Your Cart</h2>
                 {cartItems && cartItems.length > 0 ? (
@@ -145,28 +153,33 @@ const Profilepage = (props) => {
             )}
             </div>
             <div className='completedPurchases'>
-                <h2 className='completedPurchasesHeader'>Past Purchases</h2>
-                {pastPurchases && pastPurchases.length > 0 ? (
-                    pastPurchases.map((item, index) => (
-                        <div key={index+1}>
-                            <p>Order #: {index+1}</p>
-                            <p>The Cats:</p>
-                            {
-                            item.cats.length ?   item.cats.map((individualCat)=>{
-                                    return(
-                                    <div key={individualCat.id}>
-                                        <p className='profilePurchaseText'>Adopted Kitty: {individualCat.name}</p>
-                                        <p className='profilePurchaseText'>Prrrice: ${individualCat.adoptionFee}</p>
-                                        <p className='profilePurchaseText'><img src={individualCat.imageURL}/></p>
+                <button className="button"onClick={handleShowPurchases}>See All Past Purchases</button>
+                {!showPastPurchases? (null): 
+                    <div>
+                        <h2 className='completedPurchasesHeader'>Past Purchases</h2>
+                            {pastPurchases && pastPurchases.length > 0 ? (
+                                pastPurchases.map((item, index) => (
+                                    <div key={index+1}>
+                                        <p>Order #: {index+1}</p>
+                                        <p>The Cats:</p>
+                                        {
+                                        item.cats.length ?   item.cats.map((individualCat)=>{
+                                                return(
+                                                <div key={individualCat.id}>
+                                                    <p className='profilePurchaseText'>Adopted Kitty: {individualCat.name}</p>
+                                                    <p className='profilePurchaseText'>Prrrice: ${individualCat.adoptionFee}</p>
+                                                    <p className='profilePurchaseText'><img src={individualCat.imageURL}/></p>
+                                                </div>
+                                                )
+                                            }) : <div>no Cats in that order</div>
+                                        }
                                     </div>
-                                    )
-                                }) : <div>no Cats in that order</div>
-                            }
-                        </div>
-                    ))
-                ) : (
-                    <p>No Past Orders Found</p>
-                )}
+                                ))
+                            ) : (
+                                <p>No Past Orders Found</p>
+                            )}
+                    </div>
+                }
             </div>
         </div>
     )
