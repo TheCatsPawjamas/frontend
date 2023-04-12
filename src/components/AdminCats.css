@@ -5,7 +5,7 @@ body {
     color: #333;
   }
   
-  h2 {
+  #adminCatsHeader {
     font-size: 3rem;
     margin-left: 10%;
     margin-bottom: 20px;
@@ -37,7 +37,13 @@ body {
     border-radius: 25px;
   }
 
-  .button {
+  #addCatButton,
+  #createCatButton,
+  #showCatsButton,
+  #deleteCatButton,
+  #editCatButton,
+  #submitUpdateCatButton
+  {
     display: flex;
     margin: 10px;
     font-size: 1.5rem; 
@@ -54,7 +60,13 @@ body {
     flex-direction: row;
   }
   
-  .button:hover{
+  #addCatButton:hover,
+  #createCatButton:hover,
+  #showCatsButton:hover,
+  #deleteCatButton:hover,
+  #editCatButton:hover,
+  #submitUpdateCatButton:hover
+  {
     background-color: rgb(145, 129, 138);
     color: #fff;
   }

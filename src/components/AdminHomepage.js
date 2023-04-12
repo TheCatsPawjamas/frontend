@@ -10,10 +10,10 @@ const AdminHomepage = (props) => {
             {
                 isAdmin ? 
                         <div id="adminHomepage">
-                            <div className="button" id="adminUsers">
+                            <div id="adminUsers">
                                 <Link className="linkTag" to="/adminusers">Click here to delete/edit a User</Link>
                             </div>
-                            <div className="button" id="adminCats">
+                            <div  id="adminCats">
                                 <Link className="linkTag" to="/admincats">Click here to add/delete/edit a Cat</Link>
                             </div>
                         </div>

@@ -26,7 +26,7 @@
     border-bottom:  rgb(145, 129, 138) 2px solid;
   }
   
-  #catProfile img {
+  #catProfileImage {
     width: 250px;
     height: 250px;
     object-fit: cover;
@@ -35,12 +35,12 @@
     border-radius: 25px;
   }
   
-  #catProfile h2 {
+  #catProfileHeader {
     font-size: 2rem;
     margin-bottom: 0.5rem;
   }
   
-  #catProfile p {
+  .catParagraph {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
     font-weight:bolder;

@@ -92,7 +92,7 @@ const AdminCats = (props) => {
 
   return (
     <div>
-      <button className="button" onClick={handleButtonClick}>Add Cat</button>
+      <button id="addCatButton" onClick={handleButtonClick}>Add Cat</button>
       {showForm ? (
         <form onSubmit={createCat}>
 
@@ -131,16 +131,16 @@ const AdminCats = (props) => {
             <input type="text" className="entryBox" value={imageURL} onChange={(event) => setImageURL(event.target.value)} required />
           </div>
 
-          <button className="button" type="submit">Create Cat</button>
+          <button id="createCatButton" type="submit">Create Cat</button>
 
      </form>
         ) : null}
 
-        <button className="button" onClick={handleAllCatButtonClick}>Show All Cats</button>
+        <button id="showCatsButton" onClick={handleAllCatButtonClick}>Show All Cats</button>
         {showAllCats ? (
 
           <div>
-          <h2>All Cats</h2>
+          <h2 id="adminCatsHeader">All Cats</h2>
           <ul>
             {cats.map((cat) => (
               <li key={cat.id}>
@@ -149,7 +149,7 @@ const AdminCats = (props) => {
                   <p id="catName">{cat.name}</p>
                 </div>
                 < EditForm cat={cat}/>
-                <button className="button" onClick={() => handleDelete(cat.id)}>Delete</button>
+                <button id="deleteCatButton" onClick={() => handleDelete(cat.id)}>Delete</button>
               </li>
             ))}
           </ul>

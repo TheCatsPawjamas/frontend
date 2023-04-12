@@ -50,7 +50,7 @@ const handleSave = async (event) => {
   return (
     <div>
       <div>
-        <button className="button" onClick={handleEditCat}>Edit Cat</button>
+        <button id="editCatButton" onClick={handleEditCat}>Edit Cat</button>
   
         {showEdit ? (
         <form onSubmit={handleSave}>
@@ -90,7 +90,7 @@ const handleSave = async (event) => {
               <input type="text" defaultValue={cat.imageURL} className="entryBox" onChange={(event) => setImageURL(event.target.value)}/>
             </div>
 
-            <button className="button" type="submit">Update Cat</button>
+            <button id="submitUpdateCatButton" type="submit">Update Cat</button>
 
           </form>
         ) : null}
