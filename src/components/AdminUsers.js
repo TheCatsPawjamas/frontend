@@ -58,8 +58,7 @@ const AdminUsers = (props) => {
     return (
       <section id="adminUsersSection"> 
 
-
-        <button id="allUserButton" onClick={getAllUsers}> Show All Users </button>
+        <button id="allUserButton" onClick={getAllUsers}> View All Users </button>
         <h3 id="userHeader"> All Users </h3>
         <ul>
             {
@@ -67,7 +66,7 @@ const AdminUsers = (props) => {
                 <li id="listOfUsers" key={user.id}>
                     {user.username}
                     <button id="deleteButton" onClick={(event) => deleteUser(event, user.id)}> Delete </button>
-                    <AdminUpdateUsers user={user} setUsers={setUsers} users={users}/>
+                    <AdminUpdateUsers id="adminUpdates" user={user} setUsers={setUsers} users={users}/>
                 </li>
                 ))
             }
