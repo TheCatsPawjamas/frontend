@@ -11,7 +11,7 @@ const PurchaseComplete = (props) => {
         
         const confirmationNumber = Math.random().toString().substr(2,10);
         setConfirmation(confirmationNumber)
-        const message = ("your order is complete! Thank you for choosing Cat Pawjamas, please come and pickup your new furry friend from 1234 Purrrfect Lane Meowville, Milwaukitty 051421. See you soon!")
+        const message = ("your order is complete! Thank you for choosing The Cat Pawjamas, please come and pickup your new furry friend from 1234 Purrrfect Lane Meowville, Milwaukitty 051421. See you soon!")
         setMessage(message)
     }
 
@@ -49,7 +49,7 @@ const PurchaseComplete = (props) => {
                                     <li>
                                         <div id="orderDetails">
                                             <p>UserID: {currentUser.id}</p>
-                                            <p>Cart: {product.name} </p>
+                                            <p>Cat: {product.name} </p>
                                             <p>Cat ID: {product.id}</p>
                                             <p>Breed: {product.breed}</p>
                                             <p>Adoption Fee: {product.adoptionFee}</p>
@@ -65,8 +65,10 @@ const PurchaseComplete = (props) => {
                 }
 
             <button id="submitOrder" onClick={CompleteOrder}> Submit Order </button>
-            <p> {currentUser.username}, {message}</p>
-            <p> Confirmation Number: {confirmation}</p>
+            <div id="confirmation">
+                <p> {currentUser.username}, {message}</p>
+                <p> Confirmation Number: {confirmation}</p>
+            </div>
             </div>
         </section>
 

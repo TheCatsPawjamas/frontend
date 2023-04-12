@@ -50,7 +50,7 @@ const updateUserForm = () => {
 
     return (
         <section id="updateUserSection"> 
-            <button onClick={updateUserForm}> Update User </button>
+            <button id="editUserButton" onClick={updateUserForm}> Edit User </button>
 
             {updateForm ? (
             <form id="updateUserForm" onSubmit={updateUser}>
@@ -58,7 +58,7 @@ const updateUserForm = () => {
                 <h3 id="upadateHeader"> Update User</h3>
                 <label className="usersLabel"> 
                     Username: 
-                    <input
+                    <input className="userBox"
                     type="text"
                     placeholder="New Username"
                     value = {name}
@@ -67,7 +67,7 @@ const updateUserForm = () => {
                 </label>
                 <label className="usersLabel">
                     Email: 
-                    <input
+                    <input className="userBox"
                         type="text"
                         placeholder="New Email"
                         value = {email}

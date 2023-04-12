@@ -90,19 +90,20 @@
 
 
 .pagination-container {
-  margin: 0 5px;
+  margin: 5px;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-
   cursor: pointer;
-  width: 100%;
-  margin-bottom: 50px;
-  word-spacing: 50px;
+  max-width: 50vh;
+  max-height: 80vh;
+  width: 20%;
+  height: 40%;
 }
 
 .previous-page {
-  margin: 0 30px;
+  margin: 30px;
   padding: 5px 10px;
   background-color: rgb(145, 129, 138);
   border-radius: 5px;
@@ -110,7 +111,7 @@
 }
 
 .next-page {
-  margin: 0 30px;
+  margin: 30px;
   padding: 5px 10px;
   background-color: rgb(145, 129, 138);
   border-radius: 5px;

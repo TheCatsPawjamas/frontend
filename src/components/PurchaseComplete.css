@@ -23,16 +23,19 @@
     width: 100%;
     color: black;
     border-radius: 10px;
+    line-height: 2;
 
 }
 
 #orderImage {
+    margin-top: 10px;
     display: flex;
     justify-content: center;
     border-radius: 20px;
     width: 150px;
     height: 150px;
-    margin-right: 20px;
+    margin-right: 40px;
+    margin-left: 40px;
     object-fit: cover;
     margin-bottom: 1rem;
     border: rgb(145, 129, 138) 2px solid;
@@ -51,4 +54,11 @@
     margin-top: 1rem;
     border-radius: 5px;
     
+}
+
+#confirmation {
+    display: flex; 
+    flex-direction: column; 
+    color: black; 
+    font-size: 30px; 
 }
