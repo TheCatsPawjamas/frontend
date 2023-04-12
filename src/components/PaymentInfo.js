@@ -73,7 +73,7 @@ const PaymentInfo = (props) => {
 
                 <label> Credit Card Number</label>
                 <input id="CCNumber" className="paymentBox"
-                    type="text"
+                    type="password"
                     placeholder="1234567891234"
                     value={creditCard}
                     onChange={(event) => setCreditCard(event.target.value)}
@@ -89,12 +89,12 @@ const PaymentInfo = (props) => {
 
                 <label> CVC </label>
                 <input id="cvc" className="paymentBox"
-                    type="text"
+                    type="password"
                     placeholder="0000"
                     value={creditCardCVC}
                     onChange={(event) => setCreditCardCVC(event.target.value)}
                 />
-                <button id="paymentButton" type="submit"> Review Details </button>
+                <button id="reviewButton" type="submit"> Review Details </button>
                 
 
             </form>
