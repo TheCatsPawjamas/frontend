@@ -1,15 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const Settings = (props) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const toggleSettings = () => setIsOpen(!isOpen);
-    return (
-        <div>
-            {props.children && <button className='button' onClick={toggleSettings}>{props.children[0]}</button>}
-            {isOpen && props.children && <div>{props.children[1]}</div>}
-        </div>
-    );
-};
+
 
 const Profilepage = (props) => {
     const {currentUser, cartItems, isOpen} = props;
@@ -122,7 +113,7 @@ const Profilepage = (props) => {
     return (
         <div className='profilePage'>
             
-            {/* <Settings className='profileSettingsComp'> */}
+            
                 <button className="button" onClick={openEdit}>Edit Profile</button>
                 {!openEditForm? null: (
                 <div className='profileUpdateContent'>
@@ -134,10 +125,10 @@ const Profilepage = (props) => {
                     <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                     <br></br>
                     <button className="profileSettingButton" onClick={handleSaveClick}>Save</button>
-                    <button className="profileSettingButton" onClick={() => {handleCancelClick(); toggleSettings();}}>Cancel</button>
+                    <button className="profileSettingButton" onClick={openEdit}>Cancel</button>
                 </div>
                 )}
-            {/* </Settings> */}
+            
             <div className='profileOrders'>
                 <h2 className='profileOrdersHeader'>Your Cart</h2>
                 {cartItems && cartItems.length > 0 ? (
