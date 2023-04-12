@@ -10,9 +10,28 @@
     display: flex;
 }
 
-.profileSettingButton {
+/* .profileSettingButton {
     display: flex;
-}
+    margin: 10px;
+    font-size: 1.5rem; 
+    height: 50%;
+    width: 50%;
+    border: none; 
+    background-color: rgb(178,163,181);
+    color: white; 
+    border-radius: 25px; 
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25); 
+    cursor: pointer; 
+    justify-content: space-evenly;
+    align-content: space-evenly;
+    flex-direction: row;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    font-size: xx-large;
+    text-decoration: none;
+} */
 
 
 .profileOrders {
