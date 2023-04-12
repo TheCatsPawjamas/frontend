@@ -87,19 +87,23 @@
     text-align: center;
     margin-top: 2rem;
   }
+#pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 19px;
+  flex-direction: row;
+  align-items: center;  
+}
 
 
-.pagination-container {
+.pagination-container  {
   margin: 5px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
+  list-style-type: none;
   cursor: pointer;
-  max-width: 50vh;
-  max-height: 80vh;
-  width: 20%;
-  height: 40%;
 }
 
 .previous-page {
@@ -133,6 +137,9 @@
   background-color: rgb(145, 129, 138);
   color: #fff;
 }
+
+
+
 
 
 
