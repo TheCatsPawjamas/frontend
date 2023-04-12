@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    /* width: 450px; */
 }
 
 #paymentHeader {
@@ -18,10 +19,13 @@
     flex-direction: column;
     /* width: 400px; */
     border: solid black;
+    background-color: rgb(178, 163 , 181);
     box-shadow: 10px 10px 10px 10px rgb(145, 129, 138);
+    border-radius: 8px;
 }
 
 .paymentBox {
+    font-family: Arial;
     margin: 10px;
     display: flex;
     justify-content: center;
@@ -29,8 +33,8 @@
     padding: 0.5rem;
     margin-bottom: 1rem;
     width: 450px;
-    box-shadow: 5px 5px 5px 5px rgb(178, 163, 181);
-    border-radius: 6px;
+    box-shadow: 5px 5px 5px 5px rgb(145, 129, 138);
+    border-radius: 8px;
 }
 
 #expirationDate {
@@ -63,4 +67,5 @@ label {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: black;
 }
