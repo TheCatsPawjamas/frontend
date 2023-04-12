@@ -49,10 +49,10 @@ const currentPageData = cats
   .map((cat) => (
     <div key={cat.id}>
       <div id="catProfile">
-        <h2>{cat.name}</h2>
-        <img id="catImage" src={cat.imageURL}></img>
-        <p>{cat.name}'s Breed: {cat.breed}</p>
-        <p>Adoption Fee: ${cat.adoptionFee}</p>
+        <h2 id="catProfileHeader">{cat.name}</h2>
+        <img id="catProfileImage" src={cat.imageURL}></img>
+        <p className="catParagraph">{cat.name}'s Breed: {cat.breed}</p>
+        <p className="catParagraph">Adoption Fee: ${cat.adoptionFee}</p>
 
         <Link id="SingleProductsLink" to={`/cats/${cat.id}`}>
           View {cat.name}'s details
