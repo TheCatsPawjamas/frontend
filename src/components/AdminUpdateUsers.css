@@ -1,9 +1,9 @@
-#updateUserSection {
+/* #updateUserSection {
     display: flex;
     justify-content: center;
-}
+} */
 
-.updateUserButton{
+#updateUserButton{
     display: flex;
     margin: 10px;
     font-size: 1.5rem; 

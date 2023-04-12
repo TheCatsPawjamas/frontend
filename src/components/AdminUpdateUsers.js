@@ -74,7 +74,7 @@ const updateUserForm = () => {
                         onChange = {(event) => setEmail(event.target.value)}
                     />
                 </label>
-                <button className="updateUserButton" type="submit" > Update User </button>
+                <button id="updateUserButton" type="submit" > Update User </button>
 
             </form>
         ): null }

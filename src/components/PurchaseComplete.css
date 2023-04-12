@@ -22,6 +22,8 @@
     box-shadow: 5px 5px 5px 5px rgb(145, 129, 138);
     width: 100%;
     color: black;
+    border-radius: 10px;
+
 }
 
 #orderImage {
