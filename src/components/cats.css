@@ -89,16 +89,16 @@
   }
 
 
-#pagination {
-  width: 100%;
-  word-spacing: 7rem;
-}
 .pagination-container {
+  margin: 0 5px;
   display: flex;
   justify-content: center;
-  width: 100%;
-  word-spacing: 7rem;
+  align-items: center;
 
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 50px;
+  word-spacing: 50px;
 }
 
 .previous-page {
@@ -108,22 +108,33 @@
   border-radius: 5px;
   color: black;
 }
+
 .next-page {
   margin: 0 30px;
   padding: 5px 10px;
   background-color: rgb(145, 129, 138);
   border-radius: 5px;
   color: black;
-}
-
-/* .disabled-item {
-  opacity: 0.5;
-  pointer-events: none;
-} */
+} 
 
 .active-page {
   background-color: rgb(145, 129, 138);
   color: #fff;
 }
+
+.previous-page:hover {
+  background-color: rgb(145, 129, 138);
+  color: #fff;
+}
+
+
+.next-page:hover {
+  background-color: rgb(145, 129, 138);
+  color: #fff;
+}
+
+
+
+
 
   
