@@ -70,7 +70,6 @@ const pageCount = Math.ceil(cats.length / productOnPage);
 return (
   <div id="mainCatSection">
     <h1 id="catHeader">Adoptable Cats</h1>
-    {/* <input className="searchbar" type="text" onChange={handleSearchChange} /> */}
     {currentPageData}
 
     <ReactPaginate id="pagination"
