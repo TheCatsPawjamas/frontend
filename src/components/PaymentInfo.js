@@ -9,6 +9,8 @@ const PaymentInfo = (props) => {
     const [ creditCard, setCreditCard ] = useState("")
     const [ creditCardExpirationDate, setCreditCardExpirationDate ] = useState("")
     const [ creditCardCVC, setCreditCardCVC ] = useState("")
+    const BASE_URL = 'https://thecatspawjamasbackend.onrender.com/api';
+
      
     const navigate = useNavigate();
 
@@ -27,7 +29,9 @@ const PaymentInfo = (props) => {
         event.preventDefault();
         
         try {
-            const response = await fetch(`http://localhost:1337/api/orders/${orderId}`, {
+            // const response = await fetch(`http://localhost:1337/api/orders/${orderId}`, {
+            const response = await fetch(`${BASE_URL}/orders/${orderId}`, {
+
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",

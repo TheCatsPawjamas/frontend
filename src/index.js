@@ -11,6 +11,8 @@ const App = () => {
     const [orderId, setOrderId] = useState();
     const [isAdmin, setIsAdmin] = useState(null);
     const [totalPrice, setTotalPrice] = useState([]);
+    const BASE_URL = 'https://thecatspawjamasbackend.onrender.com/api';
+
 
     useEffect(()=>{
       if(localStorage.getItem('token')){
@@ -24,7 +26,9 @@ const App = () => {
     async function fetchCurrentUser(){
       if (localStorage.token){
           try {
-              const currentUserResponse = await fetch(`http://localhost:1337/api/users/me`, {
+              // const currentUserResponse = await fetch(`http://localhost:1337/api/users/me`, {
+              const currentUserResponse = await fetch(`${BASE_URL}/users/me`, {
+
                   headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.token}`
@@ -37,7 +41,8 @@ const App = () => {
               setUserId(currentUserData.id);
               setIsAdmin(currentUserData.admin);
               
-              const cartResponse = await fetch(`http://localhost:1337/api/orders/cart/${currentUserData.id}`, {
+              // const cartResponse = await fetch(`http://localhost:1337/api/orders/cart/${currentUserData.id}`, {
+              const cartResponse = await fetch(`${BASE_URL}/orders/cart/${currentUserData.id}`, {
                 headers: {
                   'Content-Type': 'application/json',
                   'Authorization': `Bearer ${localStorage.token}`
@@ -67,7 +72,8 @@ const App = () => {
 
   async function fetchCart(){    
       try {
-        const response = await fetch(`http://localhost:1337/api/orders/${orderId}`, {
+        // const response = await fetch(`http://localhost:1337/api/orders/${orderId}`, {
+        const response = await fetch(`${BASE_URL}/orders/${orderId}`, {
                 headers: {
                   'Content-Type': 'application/json',
                   'Authorization': `Bearer ${localStorage.token}`
@@ -84,7 +90,8 @@ const App = () => {
 
   async function addCatToCart(item){
     try {
-      const response = await fetch(`http://localhost:1337/api/orders/${orderId}/cats`,{
+      // const response = await fetch(`http://localhost:1337/api/orders/${orderId}/cats`,{
+      const response = await fetch(`${BASE_URL}/orders/${orderId}/cats`,{
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
@@ -110,7 +117,8 @@ const App = () => {
 
   async function deleteCatFromCart(item) {
     try {
-        const response = await fetch(`http://localhost:1337/api/purchases/${item.catId}/${orderId}`,
+        // const response = await fetch(`http://localhost:1337/api/purchases/${item.catId}/${orderId}`,
+        const response = await fetch(`${BASE_URL}/purchases/${item.catId}/${orderId}`,
         {
             method: "DELETE",
             headers: {

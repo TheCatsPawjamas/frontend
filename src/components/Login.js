@@ -11,11 +11,14 @@ const Login = (props) => {
     const [ username, setUsername ] = useState("");
     const [ password, setPassword ] = useState("");
     const { setCurrentUser } = props 
+    const BASE_URL = 'https://thecatspawjamasbackend.onrender.com/api';
+
 
     async function loginFunction(event) {
         event.preventDefault();
         try {
-            const response = await fetch(`http://localhost:1337/api/users/login`, {
+            // const response = await fetch(`http://localhost:1337/api/users/login`, {
+            const response = await fetch(`${BASE_URL}/users/login`, {
               method: "POST", 
               headers: {
                 "Content-Type": "application/json",

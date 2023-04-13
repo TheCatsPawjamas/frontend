@@ -17,7 +17,8 @@ const AdminUsers = (props) => {
 
     const getAllUsers = async () => {
         try {
-            const response = await fetch ("http://localhost:1337/api/users/admin", {
+            // const response = await fetch ("http://localhost:1337/api/users/admin", {
+            const response = await fetch ("https://thecatspawjamasbackend.onrender.com/api/users/admin", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json", 
@@ -36,7 +37,8 @@ const AdminUsers = (props) => {
     const deleteUser = async (event, id) => {
         event.preventDefault()
         try {
-            const response = await fetch (`http://localhost:1337/api/users/admin/${id}`, {
+            // const response = await fetch (`http://localhost:1337/api/users/admin/${id}`, {
+            const response = await fetch (`https://thecatspawjamasbackend.onrender.com/api/users/admin/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json", 

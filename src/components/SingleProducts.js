@@ -7,12 +7,15 @@ const SingleProducts = (props) => {
     const {isLoggedIn, setIsLoggedIn} = props;
     const {id} = useParams();
     const [products, setProducts] = useState([])
+    const BASE_URL = 'https://thecatspawjamasbackend.onrender.com/api';
+
 
 
 
     async function fetchData() {
         try {
-        const response = await fetch(`http://localhost:1337/api/cats/${id}`,{
+        // const response = await fetch(`http://localhost:1337/api/cats/${id}`,{
+        const response = await fetch(`${BASE_URL}/cats/${id}`,{
             headers: {
                 'Content-Type': 'application/json',
             }

@@ -11,6 +11,8 @@ const Profilepage = (props) => {
     const [isEditing, setIsEditing] = useState(false);
     const [pastPurchases,setPastPurchases] = useState([]);
     const [showPastPurchases, setShowPastPurchases] = useState(false);
+    const BASE_URL = 'https://thecatspawjamasbackend.onrender.com/api';
+
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
@@ -25,7 +27,9 @@ const Profilepage = (props) => {
        
         const tokenKey = localStorage.getItem("token");
         try {
-            const response = await fetch('http://localhost:1337/api/users/me', {
+            // const response = await fetch(`http://localhost:1337/api/users/me`, {
+            const response = await fetch(`${BASE_URL}/users/me`, {
+
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${tokenKey}`
@@ -54,7 +58,8 @@ const Profilepage = (props) => {
     async function getPastPurchases(){
         const tokenKey = localStorage.getItem("token");
         try {
-            const response = await fetch(`http://localhost:1337/api/orders/finishedOrder/${currentUser.id}`,{
+            // const response = await fetch(`http://localhost:1337/api/orders/finishedOrder/${currentUser.id}`,{
+            const response = await fetch(`${BASE_URL}/orders/finishedOrder/${currentUser.id}`,{
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${tokenKey}`
@@ -86,7 +91,8 @@ const Profilepage = (props) => {
         }
         
         try {
-            const response = await fetch(`http://localhost:1337/api/users/${currentUser.id}`, {
+            // const response = await fetch(`http://localhost:1337/api/users/${currentUser.id}`, {
+            const response = await fetch(`${BASE_URL}/users/${currentUser.id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

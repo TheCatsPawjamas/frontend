@@ -4,7 +4,9 @@ import "./cats.css"
 import ReactPaginate from 'react-paginate'; 
 
 const productOnPage = 4
-const BASE_URL = `http://localhost:1337/api`;
+// const BASE_URL = `http://localhost:1337/api`;
+const BASE_URL = 'https://thecatspawjamasbackend.onrender.com/api';
+
 
 const Cats = (props) => {
 const [currentPage, setCurrentPage] = useState([]);
