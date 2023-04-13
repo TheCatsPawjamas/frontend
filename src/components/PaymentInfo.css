@@ -3,7 +3,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* width: 450px; */
 }
 
 #paymentHeader {
@@ -17,7 +16,6 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    /* width: 400px; */
     border: solid black;
     background-color: rgb(178, 163 , 181);
     box-shadow: 10px 10px 10px 10px rgb(145, 129, 138);
