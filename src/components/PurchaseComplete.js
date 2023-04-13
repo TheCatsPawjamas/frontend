@@ -6,6 +6,8 @@ const PurchaseComplete = (props) => {
     const { setIsLoggedIn, currentUser, cartItems, orderId, totalPrice, setTotalPrice } = props
     const [ confirmation, setConfirmation ] = useState("")
     const [ message, setMessage ] = useState("")
+    const BASE_URL = 'https://thecatspawjamasbackend.onrender.com/api';
+
 
     function orderDetails(){
         
@@ -17,7 +19,9 @@ const PurchaseComplete = (props) => {
 
     async function CompleteOrder () {
     try {
-        const response = await fetch(`http://localhost:1337/api/orders/purchaseComplete`, {
+        // const response = await fetch(`http://localhost:1337/api/orders/purchaseComplete`, {
+        const response = await fetch(`${BASE_URL}/orders/purchaseComplete`, {
+
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

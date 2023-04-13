@@ -13,10 +13,12 @@ const updateUserForm = () => {
 }
 
 
+
     const updateUser = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch (`http://localhost:1337/api/users/admin/${user.id}`, {
+            // const response = await fetch (`http://localhost:1337/api/users/admin/${user.id}`, {
+                const response = await fetch (`https://thecatspawjamasbackend.onrender.com/api/users/admin/${user.id}`, {
                 method: "PATCH", 
                 headers: {
                     "Content-Type": "application/json",

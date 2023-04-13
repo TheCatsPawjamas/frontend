@@ -22,7 +22,9 @@ const AdminCats = (props) => {
 
   const fetchCats = async () => {
       try {
-        const response = await fetch("http://localhost:1337/api/cats");
+        // const response = await fetch("http://localhost:1337/api/cats");
+        const response = await fetch("https://thecatspawjamasbackend.onrender.com/api/cats");
+
         const cats = await response.json();
         setCats(cats);
       } catch (error) {
@@ -45,7 +47,9 @@ const AdminCats = (props) => {
   const createCat = async (event) => {
     event.preventDefault();
     if (isAdmin == true){
-      const response = await fetch("http://localhost:1337/api/cats", {
+      // const response = await fetch("http://localhost:1337/api/cats", {
+        const response = await fetch("https://thecatspawjamasbackend.onrender.com/api/cats", {
+
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -80,7 +84,8 @@ const AdminCats = (props) => {
 
   const handleDelete = async (id) => {
       try {
-        const response = await fetch(`http://localhost:1337/api/cats/${id}`, {
+        // const response = await fetch(`http://localhost:1337/api/cats/${id}`, {
+          const response = await fetch(`https://thecatspawjamasbackend.onrender.com/api/cats/${id}`, {
           method: "DELETE",
         });
         setCats(cats.filter((cat) => cat.id !== id));

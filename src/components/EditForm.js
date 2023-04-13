@@ -11,6 +11,7 @@ const [outdoor, setOutdoor] = useState(false);
 const [adoptionFee, setAdoptionFee] = useState(0);
 const [imageURL, setImageURL] = useState("");
 const [showEdit, setShowEdit] = useState(false);
+const BASE_URL = 'https://thecatspawjamasbackend.onrender.com/api';
 
 
 const handleEditCat = () => {
@@ -21,7 +22,9 @@ const handleEditCat = () => {
 const handleSave = async (event) => {
     event.preventDefault();
     try {
-    const response = await fetch(`http://localhost:1337/api/cats/${cat.id}`, {
+    // const response = await fetch(`http://localhost:1337/api/cats/${cat.id}`, {
+    const response = await fetch(`${BASE_URL}/cats/${cat.id}`, {
+
       method: "PATCH",
       headers: {
         "Authorization": `Bearer ${localStorage.getItem("token")}`,

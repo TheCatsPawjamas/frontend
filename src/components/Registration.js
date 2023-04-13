@@ -9,6 +9,8 @@ const Registration = (props) => {
     const [ password, setPassword ] = useState("")
     const [ email, setEmail ] = useState ("")
     const { setCurrentUser } = props 
+    const BASE_URL = 'https://thecatspawjamasbackend.onrender.com/api';
+
 
 
     async function accountRegistration (event) {
@@ -22,7 +24,8 @@ const Registration = (props) => {
                 return;
             }
             
-            const response = await fetch (`http://localhost:1337/api/users/register`, {
+            // const response = await fetch (`http://localhost:1337/api/users/register`, {
+            const response = await fetch (`${BASE_URL}/users/register`, {
                 method: "POST", 
                 headers: {
                     "Content-Type": "application/json",
