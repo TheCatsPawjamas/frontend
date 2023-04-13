@@ -3,8 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* width: 100%; */
-    
+    width: 90vh;
     margin-left: 20%;
     margin-right: 20%;
     border: solid black;
@@ -29,14 +28,16 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
-    padding: 10px;
+    padding: 20px;
     width: 50%;
+    border-bottom: #333;
 }
   
 #listOfUsers {
     margin-left: 10px;
     color: black;
     font-size: 18px;
+    margin-left: 20%;
 }
   
 #adminUpdates {
@@ -67,7 +68,7 @@
     margin: 10px;
     font-size: 1.5rem; 
     /* height: 20%; */
-    width: 30vh;
+    width: 85vh;
     border: none; 
     background-color: rgb(178,163,181);
     color: white; 

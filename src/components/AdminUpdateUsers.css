@@ -1,13 +1,9 @@
-/* #updateUserSection {
-    display: flex;
-    flex-direction: column;
-} */
 #updateHeader {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 20px;
-    margin-left: 1000px;
+    margin-left: 100px;
 }
 
 #updateUserButton {
